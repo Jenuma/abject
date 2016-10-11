@@ -1,0 +1,76 @@
+<div id="contact-index" class="container content">
+    <div wg-error></div>
+    <form name="contactForm" ng-submit="contactCtrl.updateContact()">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input 
+                               type="text"
+                               name="name"
+                               class="form-control"
+                               required
+                               ng-class="{'has-error': contactform.name.$touched && contactForm.name.$invalid}"
+                               ng-model="contactCtrl.formData.name"
+                        />
+                    </td>
+                    <td>
+                        <input 
+                               type="email"
+                               name="email"
+                               class="form-control"
+                               required
+                               ng-class="{'has-error': contactform.email.$touched && contactForm.email.$invalid}"
+                               ng-model="contactCtrl.formData.email"
+                        />
+                    </td>
+                    <td>
+                        <input 
+                               type="text"
+                               class="form-control"
+                               name="number"
+                               required
+                               ng-class="{'has-error': contactform.number.$touched && contactForm.number.$invalid}"
+                               ng-model="contactCtrl.formData.number"
+                        />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success">
+                            <span ng-class="contactCtrl.updateIcon || 'fa fa-user-plus fa-fw'"></span>
+                        </button>
+                    </td>
+                    <td ng-show="contactCtrl.isEditing">
+                        <!-- type="button" required for html to not treat it as a submit button -->
+                        <button type="button" class="btn btn-danger" ng-click="contactCtrl.stopEditing()">
+                            <span class="fa fa-times fa-fw"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="contact-row" ng-repeat="contact in contactCtrl.contacts">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.number}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" ng-disabled="contactCtrl.isEditing" ng-click="contactCtrl.deleteContact(contact.id)">
+                            <span class="fa fa-trash-o fa-fw"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning" ng-click="contactCtrl.startEditing(contact)">
+                            <span class="fa fa-pencil fa-fw"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

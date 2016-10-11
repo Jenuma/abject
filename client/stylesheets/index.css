@@ -1,0 +1,51 @@
+body {
+    padding: 0;
+    background-color: #E9E9E9;
+}
+
+#main {
+    margin: 1em;
+}
+
+.content {
+    margin: 1em auto;
+    
+    min-height: 600px;
+    max-width: 800px;
+    
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px #AAAAAA;
+    
+    background-color: white;
+}
+
+[ng-click] {
+    cursor: pointer;
+}
+
+/*
+ * Colors
+ */
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}

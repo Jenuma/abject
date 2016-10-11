@@ -1,0 +1,12 @@
+#footer {
+    padding: 1em;
+    min-height: 3em;
+}
+
+#author {
+    float: left;
+}
+
+#project {
+    float: right;
+}

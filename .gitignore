@@ -1,0 +1,8 @@
+node_modules/
+data/
+documentation/fonts/
+documentation/scripts/
+documentation/styles/
+mongod.bat
+mongod.command
+.DS_Store

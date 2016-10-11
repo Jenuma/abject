@@ -1,0 +1,44 @@
+(function() {
+    "use strict";
+
+    angular
+        .module("app", [
+            "ngAnimate",
+            "ui.router",
+            "ui.router.title",
+            "wg.directives",
+            "wg.services",
+            "wg.errors",
+            "wg.dashboard",
+            "wg.contacts"
+        ])
+        .config(function($stateProvider, $locationProvider) {
+            
+            var dashboardState = {
+                name: "dashboard",
+                url: "/",
+                templateUrl: "/views/dashboard.html",
+                controller: "DashboardController",
+                controllerAs: "dashboardCtrl",
+                resolve: {
+                    $title: function() {return "Dashboard";}
+                }
+            };
+        
+            var contactsState = {
+                name: "contacts",
+                url: "/contacts",
+                templateUrl: "/views/contact/contact.index.html",
+                controller: "ContactController",
+                controllerAs: "contactCtrl",
+                resolve: {
+                    $title: function() {return "Contacts";}
+                }
+            };
+        
+            $locationProvider.html5Mode(true);
+        
+            $stateProvider.state(dashboardState);
+            $stateProvider.state(contactsState);
+        });
+})();

@@ -1,0 +1,17 @@
+#dashboard-container {
+    text-align: center;
+}
+
+.panel {
+    display: inline-block;
+    margin: 1em;
+    max-width: 150px;
+}
+
+.panel-body {
+    line-height: 5em;
+}
+
+.panel-heading, .panel-body {
+    text-align: center;
+}

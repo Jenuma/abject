@@ -1,0 +1,7 @@
+.contact-row.ng-enter {
+    animation: fadeInDown 0.5s;
+}
+
+.contact-row.ng-leave {
+    animation: fadeOutDown 0.25s;
+}
