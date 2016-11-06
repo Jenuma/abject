@@ -1,0 +1,7 @@
+.to-play-row.ng-enter {
+    animation: fadeInDown 0.5s;
+}
+
+.to-play-row.ng-leave {
+    animation: fadeOutDown 0.25s;
+}

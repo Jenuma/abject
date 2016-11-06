@@ -37,5 +37,15 @@
         vm.loadContactView = function() {
             $state.go("contacts");
         };
+        
+        /**
+         * Loads the index page for to-play resources.
+         * @function loadToPlayView
+         * @memberOf ClientControllers.DashboardController
+         * @instance
+         */
+        vm.loadToPlayView = function() {
+            $state.go("to-play")
+        }
     }
 })();

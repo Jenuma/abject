@@ -1,11 +1,12 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="dashboard">Abject Admin</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="dashboard">Abject Admin</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li ng-class="{'active': $title === 'Dashboard'}"><a ui-sref="dashboard">Dashboard</a></li>
-      <li ng-class="{'active': $title === 'Contacts'}"><a ui-sref="contacts">Contacts</a></li>
-    </ul>
-  </div>
+        <ul class="nav navbar-nav">
+            <li ng-class="{'active': $title === 'Dashboard'}"><a ui-sref="dashboard">Dashboard</a></li>
+            <li ng-class="{'active': $title === 'Contacts'}"><a ui-sref="contacts">Contacts</a></li>
+            <li ng-class="{'active': $title === 'To Play'}"><a ui-sref="to-play">To Play</a></li>
+        </ul>
+    </div>
 </nav>

@@ -17,3 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed specs that were failing due to the new architecture/routes
 - Removed some comments to make it cleaner
 - Generated new documentation
+
+## [0.2.0] - 2016-11-6
+- Added basic functionality for to-play page

@@ -1,6 +1,6 @@
 {
   "name": "abject-admin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Intranet for various tasks and utilities.",
   "license": "GPL-3.0",
   "main": "server.js",

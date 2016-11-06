@@ -73,6 +73,7 @@ module.exports = function(grunt) {
         var dbConfig = require("./config/db");
         
         var jsonContacts = grunt.file.readJSON("./config/development-data.json").allContacts;
+        var jsonGames = grunt.file.readJSON("./config/development-data.json").allGames;
         var done = this.async();
         
         mongoose.Promise = global.Promise;
@@ -83,6 +84,7 @@ module.exports = function(grunt) {
         autoIncrement.initialize(connection);
         
         var Contact = require("./server/models/contact").Contact;
+        var Game = require("./server/models/game").Game;
         
         var contacts = [];
         for(var i = 0; i < jsonContacts.length; i++) {
@@ -94,15 +96,38 @@ module.exports = function(grunt) {
             contacts.push(newContact);
         }
         
+        var games = [];
+        for(var i = 0; i < jsonGames.length; i++) {
+            var newGame = new Game({
+                title: jsonGames[i].title,
+                platform: jsonGames[i].platform,
+                genre: jsonGames[i].genre
+            });
+            games.push(newGame);
+        }
+        
+        var collections = [];
+        collections.push(contacts);
+        collections.push(games);
+        
         connection.once("open", function() {
-            async.eachSeries(contacts, function(contact, asyncdone) {
-                contact.save(asyncdone);
+            async.eachSeries(collections, function(collection, collectionDone) {
+                async.eachSeries(collection, function(document, documentDone) {
+                    document.save(documentDone);
+                }, function(err) {
+                    if(err) {
+                        grunt.log.writeln("Error: " + err);
+                    } else {
+                        grunt.log.writeln("Succcessfully wrote collection to dev database.");
+                    }
+                    
+                    collectionDone();
+                });
             }, function(err) {
                 if(err) {
                     grunt.log.writeln("Error: " + err);
-                }
-                else {
-                    grunt.log.writeln("Successfully wrote contacts to dev database.");
+                } else {
+                    grunt.log.writeln("Successfully populated the dev database.");
                 }
                 
                 connection.close(done);

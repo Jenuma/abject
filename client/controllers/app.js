@@ -10,7 +10,8 @@
             "wg.services",
             "wg.errors",
             "wg.dashboard",
-            "wg.contacts"
+            "wg.contacts",
+            "wg.to-play"
         ])
         .config(function($stateProvider, $locationProvider) {
             
@@ -36,9 +37,21 @@
                 }
             };
         
+            var toPlayState = {
+                name: "to-play",
+                url: "/to-play",
+                templateUrl: "views/to-play/to-play.index.html",
+                controller: "ToPlayController",
+                controllerAs: "toPlayCtrl",
+                resolve: {
+                    $title: function() {return "To Play";}
+                }
+            }
+        
             $locationProvider.html5Mode(true);
         
             $stateProvider.state(dashboardState);
             $stateProvider.state(contactsState);
+            $stateProvider.state(toPlayState);
         });
 })();

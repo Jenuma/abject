@@ -1,0 +1,75 @@
+<div id="to-play-index" class="container content">
+    <div wg-error></div>
+    <form name="toPlayForm" ng-submit="toPlayCtrl.updateToPlay()">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Platform</th>
+                    <th>Genre</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input 
+                           type="text"
+                           name="title"
+                           class="form-control"
+                           required
+                           ng-class="{'has-error': toPlayForm.title.$touched && toPlayForm.title.$invalid}"
+                           ng-model="toPlayCtrl.formData.title"
+                        />
+                    </td>
+                    <td>
+                        <input 
+                           type="text"
+                           name="platform"
+                           class="form-control"
+                           required
+                           ng-class="{'has-error': toPlayForm.platform.$touched && toPlayForm.platform.$invalid}"
+                           ng-model="toPlayCtrl.formData.platform"
+                        />
+                    </td>
+                    <td>
+                        <input 
+                           type="text"
+                           name="genre"
+                           class="form-control"
+                           required
+                           ng-class="{'has-error': toPlayForm.genre.$touched && toPlayForm.genre.$invalid}"
+                           ng-model="toPlayCtrl.formData.genre"
+                        />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success">
+                            <span ng-class="contactCtrl.updateIcon || 'fa fa-plus fa-fw'"></span>
+                        </button>
+                    </td>
+                    <td ng-show="toPlayCtrl.isEditing">
+                        <button type="button" class="btn btn-danger" ng-click="toPlayCtrl.stopEditing()">
+                            <span class="fa fa-times fa-fw"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="to-play-row" ng-repeat="game in toPlayCtrl.games">
+                    <td>{{game.title}}</td>
+                    <td>{{game.platform}}</td>
+                    <td>{{game.genre}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" ng-disabled="toPlayCtrl.isEditing" ng-click="tpPlayCtrl.deleteGame(game.id)">
+                            <span class="fa fa-trash-o fa-fw"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning" ng-click="toPlayCtrl.startEditing(game)">
+                            <span class="fa fa-pencil fa-fw"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

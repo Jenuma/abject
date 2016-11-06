@@ -20,7 +20,7 @@
      */
     function ContactController($http, errorService) {
         /**
-         * The view-model for a contact resources.
+         * The view-model for a contact resource.
          * @typedef {View-Model}
          * @memberOf ClientControllers.ContactController
          * @instance
