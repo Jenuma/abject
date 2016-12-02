@@ -16,7 +16,7 @@
      * @constructor DashboardController
      * @memberOf ClientControllers
      * @param {service} $state - Service for changing view state.
-     * @param {service} errorService - Notified if there are any errors with contacts.
+     * @param {service} errorService - Notified if there are any errors.
      */
     function DashboardController($state, errorService) {
         /**
@@ -37,5 +37,7 @@
         vm.loadContactView = function() {
             $state.go("contacts");
         };
+        
+        $state.go("login");
     }
 })();

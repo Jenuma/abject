@@ -9,11 +9,23 @@
             "wg.directives",
             "wg.services",
             "wg.errors",
+            "wg.login",
             "wg.dashboard",
             "wg.contacts"
         ])
         .config(function($stateProvider, $locationProvider) {
             
+            var loginState = {
+                name: "login",
+                url: "/login",
+                templateUrl: "/views/login.html",
+                controller: "LoginController",
+                controllerAs: "loginCtrl",
+                resolve: {
+                    $title: function() {return "Login";}
+                }
+            };
+        
             var dashboardState = {
                 name: "dashboard",
                 url: "/",
@@ -38,6 +50,7 @@
         
             $locationProvider.html5Mode(true);
         
+            $stateProvider.state(loginState);
             $stateProvider.state(dashboardState);
             $stateProvider.state(contactsState);
         });

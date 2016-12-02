@@ -1,0 +1,24 @@
+<div id="contact-index" class="container content">
+    <div wg-error></div>
+    <form name="loginForm" ng-submit="loginCtrl.login()">
+        <input 
+           type="email"
+           name="email"
+           class="form-control"
+           required
+           ng-class="{'has-error': loginForm.email.$touched && loginForm.email.$invalid}"
+           ng-model="loginCtrl.email"
+        />
+        
+        <input 
+           type="password"
+           name="password"
+           class="form-control"
+           required
+           ng-class="{'has-error': loginForm.password.$touched && loginForm.password.$invalid}"
+           ng-model="loginCtrl.password"
+        />
+        
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+</div>

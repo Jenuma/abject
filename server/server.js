@@ -1,6 +1,12 @@
-//
-// Main entry point for the program; this file serves all files to the browser
-//
+// ---------------------------------------------------------------------------------------------------------|
+// server.js                                                                                                |
+//                                                                                                          |
+// This is the main entry point for the MEAN app.                                                           |
+//                                                                                                          |         
+// Author: Clifton Roberts                                                                                  |         
+// Date: 2 December 2016                                                                                    |         
+// ---------------------------------------------------------------------------------------------------------|
+
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
@@ -10,9 +16,9 @@ var routes = require("./routes");
 
 var app = express();
 
-//
-// Static directories
-//
+// ---------------------------------------------------------------------------------------------------------|
+// Static Directories                                                                                       |
+// ---------------------------------------------------------------------------------------------------------|
 app.use("/angular", express.static(__dirname + "/../node_modules/angular"));
 app.use("/angular-ui-router", express.static(__dirname + "/../node_modules/angular-ui-router/release"));
 app.use("/angular-ui-router-title", express.static(__dirname + "/../node_modules/angular-ui-router-title"));
@@ -29,9 +35,9 @@ app.use("/views", express.static(__dirname + "/../client/views"));
 app.use(express.static(__dirname + "/../client/views"));
 app.use(bodyParser.json());
 
-//
-// Mongoose connection logic
-//
+// ---------------------------------------------------------------------------------------------------------|
+// MongoDB Connection Logic                                                                                 |
+// ---------------------------------------------------------------------------------------------------------|
 mongoose.connect(dbConfig.url);
 var connection = mongoose.connection;
 global.autoIncrement = require("mongoose-auto-increment");
@@ -45,13 +51,20 @@ connection.once("open", function() {
 
 mongoose.Promise = global.Promise;
 
+// ---------------------------------------------------------------------------------------------------------|
+// Routes                                                                                                   |
+// ---------------------------------------------------------------------------------------------------------|
 app.use("/", routes);
 
 app.get("/*", function(req, res) {
     res.sendFile(path.resolve(__dirname + "/../client/views/index.html"));
 });
 
-app.listen(3000);
-console.log("Server running on port 3000...");
+// ---------------------------------------------------------------------------------------------------------|
+// App Start                                                                                                |
+// ---------------------------------------------------------------------------------------------------------|
+var port = process.env.PORT || 8080;
+app.listen(port);
+console.log(`Server running on port ${port}...`);
 
 module.exports = app;
