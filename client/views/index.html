@@ -9,6 +9,14 @@
         
         <title ng-bind="$title + ' - Abject Admin'">Abject Admin</title>
         
+        <script>
+            if (window.location.hash && window.location.hash === "#_=_") {
+                if (window.history && history.pushState) {
+                    window.history.replaceState("", document.title, window.location.pathname);
+                }
+            }
+        </script>
+        
         <script src="/angular/angular.js"></script>
         <script src="/angular-ui-router/angular-ui-router.js"></script>
         <script src="/angular-ui-router-title/angular-ui-router-title.js"></script>

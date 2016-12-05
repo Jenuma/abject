@@ -43,7 +43,7 @@ module.exports = function(grunt) {
     //
     grunt.registerTask("db-clear", "Clears the database of all data.", function() {
         var mongoose = require("mongoose");
-        var dbConfig = require("./config/db");
+        var dbConfig = require("./config/db.conf");
         
         var done = this.async();
         
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
     grunt.registerTask("db-populate", "Populates the database with dummy data.", function() {
         var mongoose = require("mongoose");
         var async = require("async");
-        var dbConfig = require("./config/db");
+        var dbConfig = require("./config/db.conf");
         
         var jsonContacts = grunt.file.readJSON("./config/development-data.json").allContacts;
         var done = this.async();

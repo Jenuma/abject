@@ -9,7 +9,7 @@
         .module("wg.login", [])
         .controller("LoginController", LoginController);
     
-    LoginController.$inject = ["$state", "errorService"];
+    LoginController.$inject = ["$http", "$state", "errorService"];
     
     /**
      * Client (Angular) Controller for login page.
@@ -18,7 +18,7 @@
      * @param {service} $state - Service for changing view state.
      * @param {service} errorService - Notified if there are any errors with logging in.
      */
-    function LoginController($state, errorService) {
+    function LoginController($http, $state, errorService) {
         /**
          * The view-model for the login page.
          * @typedef {View-Model}
@@ -31,7 +31,7 @@
         var vm = this;
         
         vm.login = function() {
-            console.log("Logging in...");
+            $http.get("login/submit");
         };
         
         /**

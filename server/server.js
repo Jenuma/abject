@@ -11,10 +11,36 @@ var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var path = require("path");
-var dbConfig = require("../config/db");
+var dbConfig = require("../config/db.conf");
+var fbConfig = require("../config/fb.conf");
 var routes = require("./routes");
 
+// ---------------------------------------------------------------------------------------------------------|
+// Passport Facebook Authentication                                                                         |
+// ---------------------------------------------------------------------------------------------------------|
+var passport = require("passport");
+var FacebookStrategy = require("passport-facebook").Strategy;
+
+passport.use(new FacebookStrategy({
+    clientID: fbConfig.appId,
+    clientSecret: fbConfig.appSecret,
+    callbackURL: fbConfig.callbackUrl
+    },
+    function(accessToken, refreshToken, profile, cb) {
+        return cb(null, profile);
+    }
+));
+
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+});
+
 var app = express();
+app.use(passport.initialize());
 
 // ---------------------------------------------------------------------------------------------------------|
 // Static Directories                                                                                       |
@@ -46,7 +72,7 @@ autoIncrement.initialize(connection);
 connection.on("error", console.error.bind(console, "Connection error: "));
 
 connection.once("open", function() {
-   console.log("Connected to: db.abject-admin-dev"); 
+   console.log(`Connected to: ${dbConfig.url}`);
 });
 
 mongoose.Promise = global.Promise;
@@ -54,6 +80,13 @@ mongoose.Promise = global.Promise;
 // ---------------------------------------------------------------------------------------------------------|
 // Routes                                                                                                   |
 // ---------------------------------------------------------------------------------------------------------|
+app.get("/login/submit", passport.authenticate("facebook"));
+
+app.get("/login/return", passport.authenticate("facebook", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+}));
+
 app.use("/", routes);
 
 app.get("/*", function(req, res) {

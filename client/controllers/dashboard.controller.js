@@ -37,7 +37,5 @@
         vm.loadContactView = function() {
             $state.go("contacts");
         };
-        
-        $state.go("login");
     }
 })();
