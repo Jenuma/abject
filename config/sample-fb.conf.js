@@ -1,5 +1,9 @@
 module.exports = {
     appId: "",
     appSecret: "",
-    callbackUrl: ""
+    callbackUrl: "",
+    authorizedUsers: [
+        "user1Id",
+        "user2Id"
+    ]
 };

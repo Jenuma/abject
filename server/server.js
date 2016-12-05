@@ -15,6 +15,8 @@ var dbConfig = require("../config/db.conf");
 var fbConfig = require("../config/fb.conf");
 var routes = require("./routes");
 
+var app = express();
+
 // ---------------------------------------------------------------------------------------------------------|
 // Passport Facebook Authentication                                                                         |
 // ---------------------------------------------------------------------------------------------------------|
@@ -26,8 +28,16 @@ passport.use(new FacebookStrategy({
     clientSecret: fbConfig.appSecret,
     callbackURL: fbConfig.callbackUrl
     },
-    function(accessToken, refreshToken, profile, cb) {
-        return cb(null, profile);
+    function(accessToken, refreshToken, profile, done) {
+        var authorizedUsers = fbConfig.authorizedUsers;
+
+        for(var i = 0; i < authorizedUsers.length; i++) {
+            if(profile.id === authorizedUsers[i]) {
+                return done(null, profile);
+            }
+        }
+    
+        return done(null, false, "You are not authorized to use this service.");
     }
 ));
 
@@ -39,7 +49,6 @@ passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
 
-var app = express();
 app.use(passport.initialize());
 
 // ---------------------------------------------------------------------------------------------------------|
