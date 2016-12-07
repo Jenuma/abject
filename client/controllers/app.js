@@ -6,11 +6,11 @@
             "ngAnimate",
             "ui.router",
             "ui.router.title",
-            "wg.directives",
-            "wg.services",
-            "wg.errors",
-            "wg.dashboard",
-            "wg.contacts"
+            "wgl.directives",
+            "wgl.services",
+            "wgl.errors",
+            "wgl.dashboard",
+            "wgl.contacts"
         ])
         .config(function($stateProvider, $locationProvider) {
             

@@ -6,7 +6,7 @@
     "use strict";
     
     angular
-        .module("wg.contacts", [])
+        .module("wgl.contacts", [])
         .controller("ContactController", ContactController);
     
     ContactController.$inject = ["$http", "errorService"];

@@ -35,8 +35,7 @@ passport.use(new FacebookStrategy({
                 return done(null, profile);
             }
         }
-    
-        return done(null, false, "You are not authorized to use this service.");
+        return done(null, false);
     }
 ));
 
@@ -48,7 +47,11 @@ passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
 
+// ---------------------------------------------------------------------------------------------------------|
+// App Configuration                                                                                        |
+// ---------------------------------------------------------------------------------------------------------|
 app.use(passport.initialize());
+app.use(bodyParser.json());
 
 // ---------------------------------------------------------------------------------------------------------|
 // Static Directories                                                                                       |
@@ -67,7 +70,6 @@ app.use("/controllers", express.static(__dirname + "/../client/controllers"));
 app.use("/stylesheets", express.static(__dirname + "/../client/stylesheets"));
 app.use("/views", express.static(__dirname + "/../client/views"));
 app.use(express.static(__dirname + "/../client/views"));
-app.use(bodyParser.json());
 
 // ---------------------------------------------------------------------------------------------------------|
 // MongoDB Connection Logic                                                                                 |

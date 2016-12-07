@@ -1,6 +1,6 @@
 describe("The client-side contact controller", function() {
-    beforeEach(module("wg.contacts"));
-    beforeEach(module("wg.services"));
+    beforeEach(module("wgl.contacts"));
+    beforeEach(module("wgl.services"));
     
     var $controller, $httpBackend, $rootScope, errorService;
     var contactController, expectedAllContacts;

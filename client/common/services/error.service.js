@@ -6,7 +6,7 @@
     "use strict";
     
     angular
-        .module("wg.services", [])
+        .module("wgl.services", [])
         .service("errorService", errorService);
     
     /**
