@@ -6,7 +6,6 @@
 // Author: Clifton Roberts                                                                                  |         
 // Date: 2 December 2016                                                                                    |         
 // ---------------------------------------------------------------------------------------------------------|
-
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
@@ -91,10 +90,14 @@ mongoose.Promise = global.Promise;
 // ---------------------------------------------------------------------------------------------------------|
 app.get("/login/submit", passport.authenticate("facebook"));
 
-app.get("/login/return", passport.authenticate("facebook", {
-    successRedirect: "/",
-    failureRedirect: "/login"
-}));
+app.get("/login/return", passport.authenticate("facebook", {failWithError: true}),
+    function(req, res, next) {
+        res.redirect("/");
+    },
+    function(err, req, res, next) {
+        res.status(401).sendFile(path.resolve(__dirname + "/../client/views/errors/401.html"));
+    }
+);
 
 app.use("/", routes);
 
