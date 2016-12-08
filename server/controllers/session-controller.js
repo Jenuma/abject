@@ -14,7 +14,13 @@ module.exports = function(passport) {
 
     router.get("/user", function(req, res) {
         // Passport stores session (which has user) inside request object.
-        res.json(req.user);
+        if(req.user) {
+            res.status(200).json(req.user);
+        }
+        else {
+            res.status(404).send("There is no user logged in.");
+        }
+        
     });
 
     router.get("/logout", function(req, res) {

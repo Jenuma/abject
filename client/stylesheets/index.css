@@ -1,6 +1,15 @@
 body {
     padding: 0;
-    background-color: #E9E9E9;
+    background-color: #080808;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
 }
 
 #main {
@@ -14,9 +23,13 @@ body {
     max-width: 800px;
     
     border-radius: 10px;
-    box-shadow: 5px 5px 3px #AAAAAA;
+    box-shadow: 5px 5px 3px #000000;
     
-    background-color: white;
+    background-color: #222222;
+}
+
+.text {
+    color: #9E9E9E;
 }
 
 [ng-click] {
@@ -44,6 +57,10 @@ body {
 
 .white {
     color: white;
+}
+
+.grey {
+    color: #9E9E9E;
 }
 
 .black {

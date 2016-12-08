@@ -9,7 +9,7 @@
         .module("wgl.contacts", [])
         .controller("ContactController", ContactController);
     
-    ContactController.$inject = ["$http", "errorService"];
+    ContactController.$inject = ["$http", "$state", "sessionService", "errorService"];
     
     /**
      * Client (Angular) Controller for contact resources.
@@ -18,7 +18,7 @@
      * @param {service} $http - Facilitates communication with remote HTTP server.
      * @param {service} errorService - Notified if there are any errors with contacts.
      */
-    function ContactController($http, errorService) {
+    function ContactController($http, $state, sessionService, errorService) {
         /**
          * The view-model for a contact resources.
          * @typedef {View-Model}
@@ -147,6 +147,12 @@
             vm.formData = undefined;
             vm.updateContact = vm.addContact;
         }
+        
+        sessionService.isLoggedIn().then(function(response) {
+            if(response !== true) {
+                $state.go("login");
+            }
+        });
         
         vm.getContacts();
     }

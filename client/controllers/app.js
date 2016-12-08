@@ -6,10 +6,11 @@
             "ngAnimate",
             "ui.router",
             "ui.router.title",
-            "wgl.directives",
-            "wgl.services",
+            "wgl.directives.error",        
+            "wgl.services.session",
+            "wgl.services.error",
             "wgl.errors",
-            "wgl.users",
+            "wgl.session",
             "wgl.dashboard",
             "wgl.contacts"
         ])

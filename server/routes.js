@@ -4,6 +4,15 @@
 module.exports = function(passport) {
     var router = require("express").Router();
     
+    var protected = function(req, res, next) {
+        if (req.isUnauthenticated() && req.path !== "/login") {
+            res.redirect("/login");
+        }
+        else {
+            next();
+        }
+    };
+    
     // -----------------------------------------------------------------------------------------------------|
     // Session                                                                                              |
     // -----------------------------------------------------------------------------------------------------|
@@ -12,7 +21,7 @@ module.exports = function(passport) {
     // -----------------------------------------------------------------------------------------------------|
     // API                                                                                                  |
     // -----------------------------------------------------------------------------------------------------|
-    router.use("/api/contacts", require("./controllers/contact-controller")());
+    router.use("/api/contacts", require("./controllers/contact-controller")(protected));
     
     return router;
 };

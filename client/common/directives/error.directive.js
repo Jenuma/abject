@@ -6,7 +6,7 @@
     "use strict";
     
     angular
-        .module("wgl.directives", [])
+        .module("wgl.directives.error", [])
         .directive("wglError", errorDirective);
     
     /**

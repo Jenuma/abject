@@ -2,12 +2,12 @@
     "use strict";
     
     angular
-        .module("wgl.users", [])
-        .controller("UserController", UserController);
+        .module("wgl.session", [])
+        .controller("SessionController", SessionController);
     
-    UserController.$inject = ["$http"];
+    SessionController.$inject = ["$http"];
 
-    function UserController($http) {
+    function SessionController($http) {
         var vm = this;
 
         vm.getCurrentUser = function() {
@@ -15,6 +15,9 @@
                 .then(function(response) {
                     vm.username = response.data.displayName;
                     vm.profilePic = response.data.photos[0].value;
+                },
+                function(response) {
+                    console.log(response.data);
                 });
         };
         

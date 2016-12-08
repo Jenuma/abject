@@ -9,7 +9,7 @@
  * @memberOf ServerControllers
  */
 
-module.exports = function() {
+module.exports = function(protected) {
     /**
      * The router directory for /contacts/ endpoints.
      * @typedef {Router}
@@ -22,10 +22,10 @@ module.exports = function() {
      */
     var router = require("express").Router();
 
-    router.get("/", getContacts);
-    router.post("/", addContact);
-    router.delete("/:id", deleteContact);
-    router.put("/:id", editContact);
+    router.get("/", protected, getContacts);
+    router.post("/", protected, addContact);
+    router.delete("/:id", protected, deleteContact);
+    router.put("/:id", protected, editContact);
 
     /**
      * Gets all the contacts from the database.

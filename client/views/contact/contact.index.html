@@ -4,10 +4,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Number</th>
-                    <th>Action</th>
+                    <th class="text">Name</th>
+                    <th class="text">Email</th>
+                    <th class="text">Number</th>
+                    <th class="text">Action</th>
                     <th></th>
                 </tr>
             </thead>
@@ -56,9 +56,9 @@
                     </td>
                 </tr>
                 <tr class="contact-row" ng-repeat="contact in contactCtrl.contacts">
-                    <td>{{contact.name}}</td>
-                    <td>{{contact.email}}</td>
-                    <td>{{contact.number}}</td>
+                    <td class="text">{{contact.name}}</td>
+                    <td class="text">{{contact.email}}</td>
+                    <td class="text">{{contact.number}}</td>
                     <td>
                         <button type="button" class="btn btn-danger" ng-disabled="contactCtrl.isEditing" ng-click="contactCtrl.deleteContact(contact.id)">
                             <span class="fa fa-trash-o fa-fw"></span>
