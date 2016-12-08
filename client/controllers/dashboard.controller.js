@@ -6,7 +6,7 @@
     "use strict";
     
     angular
-        .module("wgl.dashboard", [])
+        .module("wgl.controllers.dashboard", [])
         .controller("DashboardController", DashboardController);
     
     DashboardController.$inject = ["$state", "sessionService", "errorService"];

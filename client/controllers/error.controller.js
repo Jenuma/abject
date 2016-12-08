@@ -6,7 +6,7 @@
     "use strict";
     
     angular
-        .module("wgl.errors", [])
+        .module("wgl.controllers.error", [])
         .controller("ErrorController", ErrorController);
     
     ErrorController.$inject = ["errorService"];

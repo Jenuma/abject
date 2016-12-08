@@ -9,10 +9,10 @@
             "wgl.directives.error",        
             "wgl.services.session",
             "wgl.services.error",
-            "wgl.errors",
-            "wgl.session",
-            "wgl.dashboard",
-            "wgl.contacts"
+            "wgl.controllers.error",
+            "wgl.controllers.session",
+            "wgl.controllers.dashboard",
+            "wgl.controllers.contact"
         ])
         .config(function($stateProvider, $locationProvider) {
             

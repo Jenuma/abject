@@ -2,7 +2,7 @@
     "use strict";
     
     angular
-        .module("wgl.session", [])
+        .module("wgl.controllers.session", [])
         .controller("SessionController", SessionController);
     
     SessionController.$inject = ["$http"];
