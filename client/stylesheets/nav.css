@@ -6,3 +6,11 @@
 #nav-button {
     float: right;
 }
+
+.img-circle {
+    margin-top: 2px;
+}
+
+.navbar-text {
+    margin-right: 1em;
+}

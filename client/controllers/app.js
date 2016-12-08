@@ -9,6 +9,7 @@
             "wgl.directives",
             "wgl.services",
             "wgl.errors",
+            "wgl.users",
             "wgl.dashboard",
             "wgl.contacts"
         ])

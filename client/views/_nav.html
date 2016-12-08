@@ -1,11 +1,21 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="dashboard">Abject Admin</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="dashboard">Abject Admin</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ng-class="{'active': $title === 'Dashboard'}"><a ui-sref="dashboard">Dashboard</a></li>
+            <li ng-class="{'active': $title === 'Contacts'}"><a ui-sref="contacts">Contacts</a></li>
+        </ul>
+        <div class="dropdown navbar-right" ng-controller="UserController as userCtrl">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <p class="navbar-text navbar-right">{{userCtrl.username}}</p>
+                <img ng-src="{{userCtrl.profilePic}}" class="img-circle navbar-right" width="45", height="45"/>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- The target attribute bypasses ui-route. -->
+                <li><a target="_self" href="/logout">Log Out</a></li>
+            </ul>
+        </div>
     </div>
-    <ul class="nav navbar-nav">
-      <li ng-class="{'active': $title === 'Dashboard'}"><a ui-sref="dashboard">Dashboard</a></li>
-      <li ng-class="{'active': $title === 'Contacts'}"><a ui-sref="contacts">Contacts</a></li>
-    </ul>
-  </div>
 </nav>

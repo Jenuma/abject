@@ -9,6 +9,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var session = require("express-session");
 var path = require("path");
 var dbConfig = require("../config/db.conf");
 var fbConfig = require("../config/fb.conf");
@@ -25,7 +26,8 @@ var FacebookStrategy = require("passport-facebook").Strategy;
 passport.use(new FacebookStrategy({
     clientID: fbConfig.appId,
     clientSecret: fbConfig.appSecret,
-    callbackURL: fbConfig.callbackUrl
+    callbackURL: fbConfig.callbackUrl,
+    profileFields: ["id", "displayName", "photos"]
     },
     function(accessToken, refreshToken, profile, done) {
         var authorizedUsers = fbConfig.authorizedUsers;
@@ -50,7 +52,9 @@ passport.deserializeUser(function(obj, cb) {
 // ---------------------------------------------------------------------------------------------------------|
 // App Configuration                                                                                        |
 // ---------------------------------------------------------------------------------------------------------|
+app.use(session({secret: fbConfig.sessionSecret}));
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.json());
 
 // ---------------------------------------------------------------------------------------------------------|
@@ -100,6 +104,16 @@ app.get("/login/return", passport.authenticate("facebook", {failWithError: true}
         res.status(401).sendFile(path.resolve(__dirname + "/../client/views/errors/401.html"));
     }
 );
+
+app.get("/current-user", function(req, res) {
+    // Passport stores session (which has user) inside request object.
+    res.json(req.user);
+});
+
+app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/login");
+});
 
 app.use("/", routes);
 
