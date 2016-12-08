@@ -11,17 +11,10 @@
         var vm = this;
 
         vm.getCurrentUser = function() {
-            $http.get("/current-user")
+            $http.get("/session/user")
                 .then(function(response) {
                     vm.username = response.data.displayName;
                     vm.profilePic = response.data.photos[0].value;
-                });
-        };
-        
-        vm.logout = function() {
-            $http.get("/logout")
-                .then(function(response) {
-                    
                 });
         };
         

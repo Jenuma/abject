@@ -14,3 +14,7 @@
 .navbar-text {
     margin-right: 1em;
 }
+
+.dropdown-menu {
+    margin-top: 0;
+}

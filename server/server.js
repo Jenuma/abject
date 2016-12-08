@@ -13,7 +13,7 @@ var session = require("express-session");
 var path = require("path");
 var dbConfig = require("../config/db.conf");
 var fbConfig = require("../config/fb.conf");
-var routes = require("./routes");
+//var routes = require("./routes");
 
 var app = express();
 
@@ -94,30 +94,9 @@ mongoose.Promise = global.Promise;
 // ---------------------------------------------------------------------------------------------------------|
 // Routes                                                                                                   |
 // ---------------------------------------------------------------------------------------------------------|
-app.get("/login/submit", passport.authenticate("facebook"));
+app.use("/", require("./routes")(passport));
 
-app.get("/login/return", passport.authenticate("facebook", {failWithError: true}),
-    function(req, res, next) {
-        res.redirect("/");
-    },
-    function(err, req, res, next) {
-        res.status(401).sendFile(path.resolve(__dirname + "/../client/views/errors/401.html"));
-    }
-);
-
-app.get("/current-user", function(req, res) {
-    // Passport stores session (which has user) inside request object.
-    res.json(req.user);
-});
-
-app.get("/logout", function(req, res) {
-    req.logout();
-    res.redirect("/login");
-});
-
-app.use("/", routes);
-
-app.get("/*", function(req, res) {
+app.use(function(req, res) {
     res.sendFile(path.resolve(__dirname + "/../client/views/index.html"));
 });
 
