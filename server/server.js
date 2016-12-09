@@ -100,6 +100,23 @@ app.use(function(req, res, next) {
     res.sendFile(path.resolve(__dirname + "/../client/views/index.html"));
 });
 
+app.use(function(err, req, res, next) {
+    if(err) {
+        if(err.status) {
+            if(err.status === 401) {
+                res.status(401).redirect("/401");
+            } else if(err.status === 404) {
+                res.status(404).send(err.message || "The requested resource could not be found.");
+            } else if(err.status === 503) {
+                res.status(503).send(err.message || "The database service may be temporarily down.");
+            }
+        } else {
+            console.log("Error: " + err);
+            res.status(500).send(err.message || "An unknown error occurred.");
+        }
+    }
+});
+
 // ---------------------------------------------------------------------------------------------------------|
 // App Start                                                                                                |
 // ---------------------------------------------------------------------------------------------------------|

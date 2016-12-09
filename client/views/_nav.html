@@ -1,5 +1,5 @@
-<div ng-controller="SessionController as sessionCtrl">
-    <nav class="navbar navbar-inverse" ng-show="sessionCtrl.username">
+<div ng-controller="NavController as navCtrl">
+    <nav class="navbar navbar-inverse" ng-show="navCtrl.username">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" ui-sref="dashboard">Abject Admin</a>
@@ -10,8 +10,8 @@
             </ul>
             <div class="dropdown navbar-right">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                    <img class="img-circle" width="30", height="30" ng-src="{{sessionCtrl.profilePic}}" />
-                    {{sessionCtrl.username}}
+                    <img class="img-circle" width="30", height="30" ng-src="{{navCtrl.profilePic}}" />
+                    {{navCtrl.username}}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">

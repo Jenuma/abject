@@ -6,6 +6,7 @@
     display: inline-block;
     margin: 1em;
     max-width: 150px;
+    border-color: black;
 }
 
 .panel-heading {

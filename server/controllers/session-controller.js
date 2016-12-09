@@ -8,7 +8,9 @@ module.exports = function(protected, passport) {
             res.redirect("/");
         },
         function(err, req, res, next) {
-            res.status(401).redirect("/401");
+            console.log("Error: " + err.message);
+            err.status = 401;
+            next(err);
         }
     );
 
@@ -18,7 +20,9 @@ module.exports = function(protected, passport) {
             res.status(200).json(req.user);
         }
         else {
-            res.status(404).send("There is no user logged in.");
+            var err = new Error("There is no user logged in.");
+            err.status = 404;
+            next(err);
         }
     });
 

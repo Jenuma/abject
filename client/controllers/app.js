@@ -10,7 +10,7 @@
             "wgl.services.session",
             "wgl.services.error",
             "wgl.controllers.error",
-            "wgl.controllers.session",
+            "wgl.controllers.nav",
             "wgl.controllers.dashboard",
             "wgl.controllers.contact"
         ])
@@ -22,8 +22,8 @@
                 resolve: {
                     $title: function() {return "Login";},
                     alreadyLoggedIn: function($state, sessionService) {
-                        sessionService.isLoggedIn().then(function(response) {
-                            if(response === true) {
+                        sessionService.getCurrentUser().then(function(response) {
+                            if(response) {
                                 $state.go("dashboard");
                             }
                         });
@@ -39,8 +39,8 @@
                 resolve: {
                     $title: function() {return "Dashboard";},
                     notLoggedIn: function($state, sessionService) {
-                        sessionService.isLoggedIn().then(function(response) {
-                            if(response !== true) {
+                        sessionService.getCurrentUser().then(function(response) {
+                            if(!response) {
                                 $state.go("login");
                             }
                         });
@@ -56,8 +56,8 @@
                 resolve: {
                     $title: function() {return "Contacts";},
                     notLoggedIn: function($state, sessionService) {
-                        sessionService.isLoggedIn().then(function(response) {
-                            if(response !== true) {
+                        sessionService.getCurrentUser().then(function(response) {
+                            if(!response) {
                                 $state.go("login");
                             }
                         });
