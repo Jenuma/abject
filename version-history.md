@@ -17,3 +17,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed specs that were failing due to the new architecture/routes
 - Removed some comments to make it cleaner
 - Generated new documentation
+
+# [1.1.0] - 2016-12-8
+- Installed passport and passport-facebook
+- Set up Passport verification/authentication and session logic in server.js
+- Added routes for session endpoints and refactored routes to be more readable, take arguments
+- Used Passport to secure API and certain session endpoints
+- Added login page, which is just a button that redirects to Facebook login
+- Added session.service which checks to see if a user is logged in, and redirects to login page if not
+- Added session.controller which can manipulate session data such as username and profile picture
+- Added user dropdown menu to navbar which displays username and profile picture, and contains logout
+- Styled many elements to move towards a dark theme
+- Refactored module names to be more in line with best practices
+- Added sample config files to remind myself how they are used
+- Updated .gitignore to be more in line with my other apps
