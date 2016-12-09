@@ -96,7 +96,7 @@ mongoose.Promise = global.Promise;
 // ---------------------------------------------------------------------------------------------------------|
 app.use("/", require("./routes")(passport));
 
-app.use(function(req, res) {
+app.use(function(req, res, next) {
     res.sendFile(path.resolve(__dirname + "/../client/views/index.html"));
 });
 

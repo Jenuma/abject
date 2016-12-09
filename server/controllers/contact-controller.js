@@ -39,7 +39,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function getContacts(req, res) {
+    function getContacts(req, res, next) {
         var Contact = require("../models/contact").Contact;
         Contact.find({}).lean().exec()
             .then(function(results) {
@@ -63,7 +63,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function addContact(req, res) {
+    function addContact(req, res, next) {
         var Contact = require("../models/contact").Contact;
         var newContact = new Contact({
             name: req.body.name,
@@ -93,7 +93,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function deleteContact(req, res) {
+    function deleteContact(req, res, next) {
         var id = req.params.id;
 
         var Contact = require("../models/contact").Contact;
@@ -119,7 +119,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function editContact(req, res) {
+    function editContact(req, res, next) {
         var id = req.params.id;
 
         var Contact = require("../models/contact").Contact;

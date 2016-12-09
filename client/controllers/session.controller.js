@@ -13,7 +13,6 @@
         vm.getCurrentUser = function() {
             $http.get("/session/user")
                 .then(function(response) {
-                console.log(response);
                     vm.username = response.data.displayName;
                     vm.profilePic = response.data.photos[0].value;
                 },

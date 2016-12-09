@@ -15,16 +15,21 @@
             "wgl.controllers.contact"
         ])
         .config(function($stateProvider, $locationProvider) {
-            
             var loginState = {
                 name: "login",
                 url: "/login",
                 templateUrl: "/views/login.html",
                 resolve: {
-                    $title: function() {return "Login";}
+                    $title: function() {return "Login";},
+                    alreadyLoggedIn: function($state, sessionService) {
+                        sessionService.isLoggedIn().then(function(response) {
+                            if(response === true) {
+                                $state.go("dashboard");
+                            }
+                        });
+                    }
                 }
             };
-        
             var dashboardState = {
                 name: "dashboard",
                 url: "/",
@@ -32,10 +37,16 @@
                 controller: "DashboardController",
                 controllerAs: "dashboardCtrl",
                 resolve: {
-                    $title: function() {return "Dashboard";}
+                    $title: function() {return "Dashboard";},
+                    notLoggedIn: function($state, sessionService) {
+                        sessionService.isLoggedIn().then(function(response) {
+                            if(response !== true) {
+                                $state.go("login");
+                            }
+                        });
+                    }
                 }
             };
-        
             var contactsState = {
                 name: "contacts",
                 url: "/contacts",
@@ -43,7 +54,30 @@
                 controller: "ContactController",
                 controllerAs: "contactCtrl",
                 resolve: {
-                    $title: function() {return "Contacts";}
+                    $title: function() {return "Contacts";},
+                    notLoggedIn: function($state, sessionService) {
+                        sessionService.isLoggedIn().then(function(response) {
+                            if(response !== true) {
+                                $state.go("login");
+                            }
+                        });
+                    }
+                }
+            };
+            var unauthorizedState = {
+                name: "unauthorized",
+                url: "/401",
+                templateUrl: "/views/errors/401.html",
+                resolve: {
+                    $title: function() {return "401 - Unauthorized";}
+                }
+            };
+            var notFoundState = {
+                name: "notFound",
+                url: "*path",
+                templateUrl: "/views/errors/404.html",
+                resolve: {
+                    $title: function() {return "404 - Not Found";}
                 }
             };
         
@@ -52,5 +86,7 @@
             $stateProvider.state(loginState);
             $stateProvider.state(dashboardState);
             $stateProvider.state(contactsState);
+            $stateProvider.state(unauthorizedState);
+            $stateProvider.state(notFoundState);
         });
 })();

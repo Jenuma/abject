@@ -9,17 +9,15 @@
                 <li ng-class="{'active': $title === 'Contacts'}"><a ui-sref="contacts">Contacts</a></li>
             </ul>
             <div class="dropdown navbar-right">
-                <div>
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        <img class="img-circle" width="30", height="30" ng-src="{{sessionCtrl.profilePic}}" />
-                        {{sessionCtrl.username}}
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <!-- The target attribute bypasses ui-route. -->
-                        <li><a target="_self" href="/session/logout">Log Out</a></li>
-                    </ul>
-                </div>
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <img class="img-circle" width="30", height="30" ng-src="{{sessionCtrl.profilePic}}" />
+                    {{sessionCtrl.username}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <!-- The target attribute bypasses ui-route. -->
+                    <li><a target="_self" href="/session/logout">Log Out</a></li>
+                </ul>
             </div>
         </div>
     </nav>
