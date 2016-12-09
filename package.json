@@ -14,10 +14,13 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
     "mongoose": "^4.6.0",
-    "mongoose-auto-increment": "^5.0.1"
+    "mongoose-auto-increment": "^5.0.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.8",

@@ -1,11 +1,10 @@
 var request = require("request");
 var app = require("../server");
 
-var base_url = "http://localhost:3000";
+var port = process.env.PORT || 8080;
+var base_url = `http://localhost:${port}`;
 
 describe("The server-side contact controller", function() {
-    var controller;
-    
     var expectedAllContacts = require("../../config/development-data.json").expectedAllContacts;
     
     it("can get all contacts", function(done) {

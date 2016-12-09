@@ -9,6 +9,15 @@
         
         <title ng-bind="$title + ' - Abject Admin'">Abject Admin</title>
         
+        <!-- This snippet removes the hash fragment that Facebook tags onto the URL.  -->
+        <script>
+            if (window.location.hash && window.location.hash === "#_=_") {
+                if (window.history && history.pushState) {
+                    window.history.replaceState("", document.title, window.location.pathname);
+                }
+            }
+        </script>
+        
         <script src="/angular/angular.js"></script>
         <script src="/angular-ui-router/angular-ui-router.js"></script>
         <script src="/angular-ui-router-title/angular-ui-router-title.js"></script>
@@ -16,7 +25,9 @@
         
         <script src="/controllers/error.controller.js"></script>
         <script src="/directives/error.directive.js"></script>
+        <script src="/services/session.service.js"></script>
         <script src="/services/error.service.js"></script>
+        <script src="/controllers/session.controller.js"></script>
         <script src="/controllers/dashboard.controller.js"></script>
         <script src="/controllers/contact.controller.js"></script>
         <script src="/controllers/app.js"></script>
@@ -29,6 +40,7 @@
         <link rel="stylesheet" type="text/css" href="/animate.css/animate.min.css"/>
         
         <link rel="stylesheet" type="text/css" href="/stylesheets/index.css"/>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/login.css"/>
         <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css"/>
         <link rel="stylesheet" type="text/css" href="/stylesheets/error.css"/>
         <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css"/>
@@ -37,6 +49,7 @@
     </head>
     <body>
         <div id="nav-container" ng-include="'./_nav.html'"></div>
+        
         <div id="main">
             <ui-view></ui-view>
 

@@ -6,3 +6,28 @@
 #nav-button {
     float: right;
 }
+
+.navbar {
+    border-radius: 0px;
+}
+
+.dropdown .btn {
+    margin-top: 2px;
+    border: none;
+    border-radius: 0px;
+    
+    color: white;
+    background-color: #424242;
+}
+
+.img-circle {
+    margin-top: 2px;
+}
+
+.navbar-text {
+    margin-right: 1em;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}

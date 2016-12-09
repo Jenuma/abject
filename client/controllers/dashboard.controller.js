@@ -6,19 +6,19 @@
     "use strict";
     
     angular
-        .module("wg.dashboard", [])
+        .module("wgl.controllers.dashboard", [])
         .controller("DashboardController", DashboardController);
     
-    DashboardController.$inject = ["$state", "errorService"];
+    DashboardController.$inject = ["$state", "sessionService", "errorService"];
     
     /**
      * Client (Angular) Controller for dashboard.
      * @constructor DashboardController
      * @memberOf ClientControllers
      * @param {service} $state - Service for changing view state.
-     * @param {service} errorService - Notified if there are any errors with contacts.
+     * @param {service} errorService - Notified if there are any errors.
      */
-    function DashboardController($state, errorService) {
+    function DashboardController($state, sessionService, errorService) {
         /**
          * The view-model for the dashboard.
          * @typedef {View-Model}
@@ -37,5 +37,11 @@
         vm.loadContactView = function() {
             $state.go("contacts");
         };
+        
+        sessionService.isLoggedIn().then(function(response) {
+            if(response !== true) {
+                $state.go("login");
+            }
+        });
     }
 })();

@@ -1,13 +1,13 @@
 <div id="contact-index" class="container content">
-    <div wg-error></div>
+    <div wgl-error></div>
     <form name="contactForm" ng-submit="contactCtrl.updateContact()">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Number</th>
-                    <th>Action</th>
+                    <th class="text">Name</th>
+                    <th class="text">Email</th>
+                    <th class="text">Number</th>
+                    <th class="text">Action</th>
                     <th></th>
                 </tr>
             </thead>
@@ -19,7 +19,7 @@
                                name="name"
                                class="form-control"
                                required
-                               ng-class="{'has-error': contactform.name.$touched && contactForm.name.$invalid}"
+                               ng-class="{'has-error': contactForm.name.$touched && contactForm.name.$invalid}"
                                ng-model="contactCtrl.formData.name"
                         />
                     </td>
@@ -29,7 +29,7 @@
                                name="email"
                                class="form-control"
                                required
-                               ng-class="{'has-error': contactform.email.$touched && contactForm.email.$invalid}"
+                               ng-class="{'has-error': contactForm.email.$touched && contactForm.email.$invalid}"
                                ng-model="contactCtrl.formData.email"
                         />
                     </td>
@@ -39,7 +39,7 @@
                                class="form-control"
                                name="number"
                                required
-                               ng-class="{'has-error': contactform.number.$touched && contactForm.number.$invalid}"
+                               ng-class="{'has-error': contactForm.number.$touched && contactForm.number.$invalid}"
                                ng-model="contactCtrl.formData.number"
                         />
                     </td>
@@ -56,9 +56,9 @@
                     </td>
                 </tr>
                 <tr class="contact-row" ng-repeat="contact in contactCtrl.contacts">
-                    <td>{{contact.name}}</td>
-                    <td>{{contact.email}}</td>
-                    <td>{{contact.number}}</td>
+                    <td class="text">{{contact.name}}</td>
+                    <td class="text">{{contact.email}}</td>
+                    <td class="text">{{contact.number}}</td>
                     <td>
                         <button type="button" class="btn btn-danger" ng-disabled="contactCtrl.isEditing" ng-click="contactCtrl.deleteContact(contact.id)">
                             <span class="fa fa-trash-o fa-fw"></span>

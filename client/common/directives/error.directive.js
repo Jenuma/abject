@@ -6,8 +6,8 @@
     "use strict";
     
     angular
-        .module("wg.directives", [])
-        .directive("wgError", errorDirective);
+        .module("wgl.directives.error", [])
+        .directive("wglError", errorDirective);
     
     /**
      * Attribute directive for error messages.

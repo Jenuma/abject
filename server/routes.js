@@ -1,8 +1,27 @@
-//
-// Route Directory
-//
-var router = require("express").Router();
-
-router.use("/api/contacts", require("./controllers/contact-controller"));
-
-module.exports = router;
+// ---------------------------------------------------------------------------------------------------------|
+// Route Directory                                                                                          |
+// ---------------------------------------------------------------------------------------------------------|
+module.exports = function(passport) {
+    var router = require("express").Router();
+    
+    var protected = function(req, res, next) {
+        if (req.isUnauthenticated() && req.path !== "/login") {
+            res.redirect("/login");
+        }
+        else {
+            next();
+        }
+    };
+    
+    // -----------------------------------------------------------------------------------------------------|
+    // Session                                                                                              |
+    // -----------------------------------------------------------------------------------------------------|
+    router.use("/session", require("./controllers/session-controller")(protected, passport));
+    
+    // -----------------------------------------------------------------------------------------------------|
+    // API                                                                                                  |
+    // -----------------------------------------------------------------------------------------------------|
+    router.use("/api/contacts", require("./controllers/contact-controller")(protected));
+    
+    return router;
+};

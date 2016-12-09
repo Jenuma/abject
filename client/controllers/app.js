@@ -6,14 +6,25 @@
             "ngAnimate",
             "ui.router",
             "ui.router.title",
-            "wg.directives",
-            "wg.services",
-            "wg.errors",
-            "wg.dashboard",
-            "wg.contacts"
+            "wgl.directives.error",        
+            "wgl.services.session",
+            "wgl.services.error",
+            "wgl.controllers.error",
+            "wgl.controllers.session",
+            "wgl.controllers.dashboard",
+            "wgl.controllers.contact"
         ])
         .config(function($stateProvider, $locationProvider) {
             
+            var loginState = {
+                name: "login",
+                url: "/login",
+                templateUrl: "/views/login.html",
+                resolve: {
+                    $title: function() {return "Login";}
+                }
+            };
+        
             var dashboardState = {
                 name: "dashboard",
                 url: "/",
@@ -38,6 +49,7 @@
         
             $locationProvider.html5Mode(true);
         
+            $stateProvider.state(loginState);
             $stateProvider.state(dashboardState);
             $stateProvider.state(contactsState);
         });

@@ -8,8 +8,18 @@
     max-width: 150px;
 }
 
+.panel-heading {
+    color: #9E9E9E !important;
+    background-color: #424242 !important;
+}
+
+.panel-heading {
+    background-color: #080808;
+}
+
 .panel-body {
     line-height: 5em;
+    background-color: #616161 !important;
 }
 
 .panel-heading, .panel-body {
