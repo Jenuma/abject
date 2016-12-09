@@ -8,23 +8,25 @@ module.exports = function(protected, passport) {
             res.redirect("/");
         },
         function(err, req, res, next) {
-            res.status(401).sendFile(path.resolve(__dirname + "/../client/views/errors/401.html"));
+            console.log("Error: " + err.message);
+            err.status = 401;
+            next(err);
         }
     );
 
-    router.get("/user", function(req, res) {
+    router.get("/user", function(req, res, next) {
         // Passport stores session (which has user) inside request object.
         if(req.user) {
             res.status(200).json(req.user);
         }
         else {
-            // This line of code will probably never be reached.
-            res.status(404).send("There is no user logged in.");
+            var err = new Error("There is no user logged in.");
+            err.status = 404;
+            next(err);
         }
-        
     });
 
-    router.get("/logout", protected, function(req, res) {
+    router.get("/logout", protected, function(req, res, next) {
         req.logout();
         res.redirect("/login");
     });

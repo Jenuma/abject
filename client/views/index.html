@@ -27,7 +27,7 @@
         <script src="/directives/error.directive.js"></script>
         <script src="/services/session.service.js"></script>
         <script src="/services/error.service.js"></script>
-        <script src="/controllers/session.controller.js"></script>
+        <script src="/controllers/nav.controller.js"></script>
         <script src="/controllers/dashboard.controller.js"></script>
         <script src="/controllers/contact.controller.js"></script>
         <script src="/controllers/app.js"></script>
@@ -51,8 +51,11 @@
         <div id="nav-container" ng-include="'./_nav.html'"></div>
         
         <div id="main">
-            <ui-view></ui-view>
-
+            <div class="container content">
+                <div wgl-error></div>
+                <ui-view></ui-view>
+            </div>
+            
             <div id="footer-container" ng-include="'./_footer.html'"></div>
         </div>
     </body>

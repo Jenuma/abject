@@ -8,10 +8,13 @@
     sessionService.$inject = ["$http"];
     
     function sessionService($http) {
-        this.isLoggedIn = function() {
+        this.getCurrentUser = function() {
             return $http.get("/session/user")
                 .then(function(response) {
-                    return true;
+                    return {
+                        username: response.data.displayName,
+                        profilePic: response.data.photos[0].value
+                    };
                 },
                 function(response) {
                     return false;

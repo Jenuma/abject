@@ -3,6 +3,10 @@ body {
     background-color: #080808;
 }
 
+h1, h2, h3, h4, h5 {
+    color: #9E9E9E;
+}
+
 a {
     color: white;
 }
@@ -30,6 +34,10 @@ a:hover {
 
 .text {
     color: #9E9E9E;
+}
+
+.small-text {
+    font-size: 0.5em;
 }
 
 [ng-click] {

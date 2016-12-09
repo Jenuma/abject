@@ -148,12 +148,6 @@
             vm.updateContact = vm.addContact;
         }
         
-        sessionService.isLoggedIn().then(function(response) {
-            if(response !== true) {
-                $state.go("login");
-            }
-        });
-        
         vm.getContacts();
     }
 })();

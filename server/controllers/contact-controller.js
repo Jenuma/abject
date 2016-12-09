@@ -31,7 +31,7 @@ module.exports = function(protected) {
      * Gets all the contacts from the database.
      * <ul>
      *  <li>HTTP 200 - The contacts were retrived.</li>
-     *  <li>HTTP 500 - Server error prevented the contacts from being received.</li>
+     *  <li>HTTP 503 - Server error prevented the contacts from being received.</li>
      * </ul>
      * @function getContacts
      * @memberOf ServerControllers.ContactController
@@ -39,7 +39,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function getContacts(req, res) {
+    function getContacts(req, res, next) {
         var Contact = require("../models/contact").Contact;
         Contact.find({}).lean().exec()
             .then(function(results) {
@@ -47,7 +47,8 @@ module.exports = function(protected) {
             })
             .catch(function(err) {
                 console.log("Error: " + err);
-                res.status(500).send(err.message);
+                err.status = 503;
+                next(err);
             });
     }
 
@@ -55,7 +56,7 @@ module.exports = function(protected) {
      * Adds a new contact to the database.
      * <ul>
      *  <li>HTTP 201 - A new contact was created and saved.</li>
-     *  <li>HTTP 500 - Server error prevented the new contact from being saved.</li>
+     *  <li>HTTP 503 - Server error prevented the new contact from being saved.</li>
      * </ul>
      * @function addContact
      * @memberOf ServerControllers.ContactController
@@ -63,7 +64,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function addContact(req, res) {
+    function addContact(req, res, next) {
         var Contact = require("../models/contact").Contact;
         var newContact = new Contact({
             name: req.body.name,
@@ -77,7 +78,8 @@ module.exports = function(protected) {
             })
             .catch(function(err) {
                 console.log("Error: " + err);
-                res.status(500).send(err.message);
+                err.status = 503;
+                next(err);
             });
     }
 
@@ -93,7 +95,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function deleteContact(req, res) {
+    function deleteContact(req, res, next) {
         var id = req.params.id;
 
         var Contact = require("../models/contact").Contact;
@@ -103,7 +105,8 @@ module.exports = function(protected) {
             })
             .catch(function(err) {
                 console.log("Error: " + err);
-                res.status(404).send(err.message);
+                err.status = 404;
+                next(err);
             });
     }
 
@@ -119,7 +122,7 @@ module.exports = function(protected) {
      * @param {Response} res - The response from the server controller.
      * @protected
      */
-    function editContact(req, res) {
+    function editContact(req, res, next) {
         var id = req.params.id;
 
         var Contact = require("../models/contact").Contact;
@@ -129,7 +132,8 @@ module.exports = function(protected) {
             })
             .catch(function(err) {
                 console.log("Error: " + err);
-                res.status(404).send(err.message);
+                err.status = 404;
+                next(err);
             });
     }
 

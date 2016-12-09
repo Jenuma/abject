@@ -37,11 +37,5 @@
         vm.loadContactView = function() {
             $state.go("contacts");
         };
-        
-        sessionService.isLoggedIn().then(function(response) {
-            if(response !== true) {
-                $state.go("login");
-            }
-        });
     }
 })();
