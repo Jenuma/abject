@@ -8,7 +8,6 @@
     sessionService.$inject = ["$http"];
     
     function sessionService($http) {
-
         this.isLoggedIn = function() {
             return $http.get("/session/user")
                 .then(function(response) {

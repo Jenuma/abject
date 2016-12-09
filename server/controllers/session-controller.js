@@ -12,7 +12,7 @@ module.exports = function(protected, passport) {
         }
     );
 
-    router.get("/user", protected, function(req, res) {
+    router.get("/user", function(req, res) {
         // Passport stores session (which has user) inside request object.
         if(req.user) {
             res.status(200).json(req.user);
