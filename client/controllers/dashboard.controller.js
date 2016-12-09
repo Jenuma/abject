@@ -43,9 +43,5 @@
                 $state.go("login");
             }
         });
-        
-//        if(!sessionService.isLoggedIn()) {
-//            $state.go("login");
-//        }
     }
 })();

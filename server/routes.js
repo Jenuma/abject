@@ -16,7 +16,7 @@ module.exports = function(passport) {
     // -----------------------------------------------------------------------------------------------------|
     // Session                                                                                              |
     // -----------------------------------------------------------------------------------------------------|
-    router.use("/session", require("./controllers/session-controller")(passport));
+    router.use("/session", require("./controllers/session-controller")(protected, passport));
     
     // -----------------------------------------------------------------------------------------------------|
     // API                                                                                                  |

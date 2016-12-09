@@ -1,4 +1,4 @@
-module.exports = function(passport) {
+module.exports = function(protected, passport) {
     var router = require("express").Router();
     
     router.get("/login", passport.authenticate("facebook"));
@@ -12,18 +12,19 @@ module.exports = function(passport) {
         }
     );
 
-    router.get("/user", function(req, res) {
+    router.get("/user", protected, function(req, res) {
         // Passport stores session (which has user) inside request object.
         if(req.user) {
             res.status(200).json(req.user);
         }
         else {
+            // This line of code will probably never be reached.
             res.status(404).send("There is no user logged in.");
         }
         
     });
 
-    router.get("/logout", function(req, res) {
+    router.get("/logout", protected, function(req, res) {
         req.logout();
         res.redirect("/login");
     });
