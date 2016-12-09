@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Removed some comments to make it cleaner
 - Generated new documentation
 
-# [1.1.0] - 2016-12-8
+## [1.1.0] - 2016-12-8
 - Installed passport and passport-facebook
 - Set up Passport verification/authentication and session logic in server.js
 - Added routes for session endpoints and refactored routes to be more readable, take arguments
