@@ -31,3 +31,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Refactored module names to be more in line with best practices
 - Added sample config files to remind myself how they are used
 - Updated .gitignore to be more in line with my other apps
+
+## [1.1.1] - 2016-12-9
+- Fixed problem where protected /user endpoint failed and tried to serve index.html
