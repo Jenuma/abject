@@ -13,7 +13,6 @@ var session = require("express-session");
 var path = require("path");
 var dbConfig = require("../config/db.conf");
 var fbConfig = require("../config/fb.conf");
-//var routes = require("./routes");
 
 var app = express();
 
