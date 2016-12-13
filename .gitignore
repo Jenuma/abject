@@ -37,6 +37,8 @@ jspm_packages
 .node_repl_history
 
 # Sensitive Config
+web.config
+IISNode.yml
 config/db.conf.js
 config/fb.conf.js
 

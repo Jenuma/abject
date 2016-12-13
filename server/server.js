@@ -77,7 +77,7 @@ app.use(express.static(__dirname + "/../client/views"));
 // ---------------------------------------------------------------------------------------------------------|
 // MongoDB Connection Logic                                                                                 |
 // ---------------------------------------------------------------------------------------------------------|
-mongoose.connect(dbConfig.url);
+mongoose.connect(dbConfig.prodUrl);
 var connection = mongoose.connection;
 global.autoIncrement = require("mongoose-auto-increment");
 autoIncrement.initialize(connection);
@@ -85,7 +85,7 @@ autoIncrement.initialize(connection);
 connection.on("error", console.error.bind(console, "Connection error: "));
 
 connection.once("open", function() {
-   console.log(`Connected to: ${dbConfig.url}`);
+   console.log(`Connected to database.`);
 });
 
 mongoose.Promise = global.Promise;

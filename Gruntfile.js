@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         
         var done = this.async();
         
-        mongoose.connect(dbConfig.url);
+        mongoose.connect(dbConfig.devUrl);
         var connection = mongoose.connection;
         
         connection.once("open", function() {
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
         mongoose.Promise = global.Promise;
         
         global.autoIncrement = require("mongoose-auto-increment");
-        mongoose.connect(dbConfig.url);
+        mongoose.connect(dbConfig.devUrl);
         var connection = mongoose.connection;
         autoIncrement.initialize(connection);
         
