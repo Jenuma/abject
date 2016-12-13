@@ -1,18 +1,20 @@
 <div ng-controller="NavController as navCtrl">
     <nav class="navbar navbar-inverse" ng-show="navCtrl.username">
         <div class="container-fluid">
-            <div class="navbar-header">
+            <div class="navbar-header pull-left">
                 <a class="navbar-brand" ui-sref="dashboard">Abject Admin</a>
             </div>
             <ul class="nav navbar-nav">
                 <li ng-class="{'active': $title === 'Dashboard'}"><a ui-sref="dashboard">Dashboard</a></li>
                 <li ng-class="{'active': $title === 'Contacts'}"><a ui-sref="contacts">Contacts</a></li>
             </ul>
-            <div class="dropdown navbar-right">
+            <div class="dropdown navbar-header pull-right">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     <img class="img-circle" width="30", height="30" ng-src="{{navCtrl.profilePic}}" />
-                    {{navCtrl.username}}
-                    <span class="caret"></span>
+                    <span class="username">
+                        {{navCtrl.username}}
+                        <span class="caret"></span>
+                    </span>
                 </button>
                 <ul class="dropdown-menu">
                     <!-- The target attribute bypasses ui-route. -->

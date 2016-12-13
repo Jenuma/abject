@@ -5,3 +5,40 @@
 .contact-row.ng-leave {
     animation: fadeOutDown 0.25s;
 }
+
+@media only screen and (max-device-width: 480px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    table {
+        margin-top: 1em;
+    }
+    
+    .table th, .table td {
+        border: none !important;
+    }
+    
+    thead tr {
+        display: none;
+    }
+    
+    tr {
+        border: 1px solid black;
+    }
+    
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+}

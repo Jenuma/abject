@@ -31,3 +31,13 @@
 .dropdown-menu {
     margin-top: 0;
 }
+
+@media only screen and (max-device-width: 768px) {
+    .nav.navbar-nav, .username {
+        display: none;
+    }
+    
+    .dropdown .btn {
+        margin-right: 4px;
+    }
+}
