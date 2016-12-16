@@ -23,6 +23,7 @@ module.exports = function(protected) {
     var router = require("express").Router();
 
     router.get("/", protected, getContacts);
+    router.get("/:id", protected, getContact);
     router.post("/", protected, addContact);
     router.delete("/:id", protected, deleteContact);
     router.put("/:id", protected, editContact);
@@ -46,7 +47,29 @@ module.exports = function(protected) {
                 res.status(200).json(results);
             })
             .catch(function(err) {
-                console.log("Error: " + err);
+                console.log(err);
+                err.status = 503;
+                next(err);
+            });
+    }
+    
+    function getContact(req, res, next) {
+        var id = req.params.id;
+        
+        var Contact = require("../models/contact").Contact;
+        Contact.findOne({id: id}).exec()
+            .then(function(result) {
+                if(result) {
+                    res.status(200).json(result);
+                } else {
+                    var err = new Error("Contact could not be found.");
+                    console.log(err);
+                    err.status = 404;
+                    next(err);
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
                 err.status = 503;
                 next(err);
             });
@@ -77,7 +100,7 @@ module.exports = function(protected) {
                 res.status(201).json(result);
             })
             .catch(function(err) {
-                console.log("Error: " + err);
+                console.log(err);
                 err.status = 503;
                 next(err);
             });
@@ -104,7 +127,7 @@ module.exports = function(protected) {
                 res.status(200).json(result);
             })
             .catch(function(err) {
-                console.log("Error: " + err);
+                console.log(err);
                 err.status = 404;
                 next(err);
             });
@@ -131,7 +154,7 @@ module.exports = function(protected) {
                 res.status(200).json(result);
             })
             .catch(function(err) {
-                console.log("Error: " + err);
+                console.log(err);
                 err.status = 404;
                 next(err);
             });

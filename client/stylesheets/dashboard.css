@@ -14,10 +14,6 @@
     background-color: #424242 !important;
 }
 
-.panel-heading {
-    background-color: #080808;
-}
-
 .panel-body {
     line-height: 5em;
     background-color: #616161 !important;
@@ -25,4 +21,26 @@
 
 .panel-heading, .panel-body {
     text-align: center;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .panel {
+        background: none;
+        margin: 0;
+        width: 25vw;
+        border: none;
+    }
+    
+    .panel-heading {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    .panel-body {
+        line-height: 1em;
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+    
+    .fa-5x {
+        font-size: 10vw;
+    }
 }

@@ -1,0 +1,44 @@
+<div id="contact-update">
+    <h1>{{contactCtrl.updateMode}} Contact</h1>
+    <form name="contactForm" ng-submit="contactCtrl.updateContact()">
+        <p>
+            <label class="text">Name</label>
+            <input 
+                   type="text"
+                   name="name"
+                   class="contact-input form-control"
+                   required
+                   ng-class="{'has-error': contactForm.name.$touched && contactForm.name.$invalid}"
+                   ng-model="contactCtrl.formData.name"
+            />
+        </p>
+        <p>
+            <label class="text">Email</label>
+            <input 
+                   type="email"
+                   name="email"
+                   class="contact-input form-control"
+                   required
+                   ng-class="{'has-error': contactForm.email.$touched && contactForm.email.$invalid}"
+                   ng-model="contactCtrl.formData.email"
+            />
+        </p>
+        <p>
+            <label class="text">Number</label>
+            <input 
+                   type="text"
+                   name="number"
+                   class="contact-input form-control"
+                   required
+                   ng-class="{'has-error': contactForm.number.$touched && contactForm.number.$invalid}"
+                   ng-model="contactCtrl.formData.number"
+            />
+        </p>
+        <p>
+            <button id="update-button" type="submit" class="btn btn-success">
+                <span ng-class="contactCtrl.updateIcon || 'fa fa-user-plus fa-fw'"></span>
+                <span>Save Contact</span>
+            </button>
+        </p>
+    </form>
+</div>

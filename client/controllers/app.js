@@ -6,9 +6,10 @@
             "ngAnimate",
             "ui.router",
             "ui.router.title",
-            "wgl.directives.error",        
+            "wgl.directives.error",
             "wgl.services.session",
             "wgl.services.error",
+            "wgl.services.contact",
             "wgl.controllers.error",
             "wgl.controllers.nav",
             "wgl.controllers.dashboard",
@@ -47,7 +48,7 @@
                     }
                 }
             };
-            var contactsState = {
+            var contactsIndexState = {
                 name: "contacts",
                 url: "/contacts",
                 templateUrl: "/views/contact/contact.index.html",
@@ -64,6 +65,41 @@
                     }
                 }
             };
+            var contactsNewState = {
+                name: "contacts-new",
+                url: "/contacts/new",
+                templateUrl: "/views/contact/contact.update.html",
+                controller: "ContactController",
+                controllerAs: "contactCtrl",
+                resolve: {
+                    $title: function() {return "New Contact";},
+                    notLoggedIn: function($state, sessionService) {
+                        sessionService.getCurrentUser().then(function(response) {
+                            if(!response) {
+                                $state.go("login");
+                            }
+                        });
+                    }
+                }
+            };
+            var contactsEditState = {
+                name: "contacts-edit",
+                url: "/contacts/:id",
+                templateUrl: "/views/contact/contact.update.html",
+                controller: "ContactController",
+                controllerAs: "contactCtrl",
+                resolve: {
+                    $title: function() {return "Edit Contact";},
+                    notLoggedIn: function($state, sessionService) {
+                        sessionService.getCurrentUser().then(function(response) {
+                            if(!response) {
+                                $state.go("login");
+                            }
+                        });
+                    }
+                }
+            };
+            
             var unauthorizedState = {
                 name: "unauthorized",
                 url: "/401",
@@ -85,7 +121,9 @@
         
             $stateProvider.state(loginState);
             $stateProvider.state(dashboardState);
-            $stateProvider.state(contactsState);
+            $stateProvider.state(contactsIndexState);
+            $stateProvider.state(contactsNewState);
+            $stateProvider.state(contactsEditState);
             $stateProvider.state(unauthorizedState);
             $stateProvider.state(notFoundState);
         });

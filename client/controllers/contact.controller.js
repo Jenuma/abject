@@ -9,7 +9,7 @@
         .module("wgl.controllers.contact", [])
         .controller("ContactController", ContactController);
     
-    ContactController.$inject = ["$http", "errorService"];
+    ContactController.$inject = ["$state", "$stateParams", "contactService"];
     
     /**
      * Client (Angular) Controller for contact resources.
@@ -18,7 +18,7 @@
      * @param {service} $http - Facilitates communication with remote HTTP server.
      * @param {service} errorService - Notified if there are any errors with contacts.
      */
-    function ContactController($http, errorService) {
+    function ContactController($state, $stateParams, contactService) {
         /**
          * The view-model for a contact resources.
          * @typedef {View-Model}
@@ -39,13 +39,9 @@
          * @instance
          */
         vm.getContacts = function() {
-            $http.get("/api/contacts")
-                .then(function(response) {
-                    vm.contacts = response.data;
-                },
-                function(response) {
-                    errorService.updateErrorMessage(response.data);
-                });
+            contactService.getContacts().then(function(response) {
+                vm.contacts = response;
+            });
         };
 
         /**
@@ -55,15 +51,14 @@
          * @instance
          */
         vm.addContact = function() {
-            $http.post("/api/contacts", vm.formData)
-                .then(function(response) {
-                    vm.contacts.push(response.data);
-                    
+            contactService.addContact(vm.formData).then(function(response) {
+                if($state.current.name === "contacts-new") {
+                    $state.go("contacts");
+                } else {
+                    vm.contacts.push(response);
                     vm.formData = undefined;
-                },
-                function(response) {
-                    errorService.updateErrorMessage(response.data);
-                });
+                } 
+            });
         };
         
         /**
@@ -73,18 +68,19 @@
          * @instance
          */
         vm.editContact = function() {
-            $http.put("/api/contacts/" + vm.formData.id, vm.formData)
-                .then(function(response) {
+            contactService.editContact(vm.formData).then(function(response) {
+                if($state.current.name === "contacts-edit") {
+                    $state.go("contacts");
+                } else {
                     for(var i = 0; i < vm.contacts.length; i++) {
-                        if(vm.contacts[i].id === response.data.id) {
-                            vm.contacts[i] = response.data;
+                        if(vm.contacts[i].id === response.id) {
+                            vm.contacts[i] = response;
                             break;
                         }
                     }
-                },
-                function(response) {
-                    errorService.updateErrorMessage(response.data);
-                });
+                }
+            });
+            
             vm.stopEditing();
         };
         
@@ -104,18 +100,22 @@
          * @instance
          */
         vm.deleteContact = function(id) {
-            $http.delete("/api/contacts/" + id)
-                .then(function(response) {
-                    for(var i = 0; i < vm.contacts.length; i++) {
-                        if(vm.contacts[i].id === response.data.id) {
-                            vm.contacts.splice(i, 1);
-                            break;
-                        }
+            contactService.deleteContact(id).then(function(response) {
+                for(var i = 0; i < vm.contacts.length; i++) {
+                    if(vm.contacts[i].id === response.id) {
+                        vm.contacts.splice(i, 1);
+                        break;
                     }
-                },
-                function(response) {
-                    errorService.updateErrorMessage(response.data);
-                });
+                }
+            });
+        };
+        
+        vm.startAdding = function() {
+            var mq = window.matchMedia("(max-device-width: 480px)");
+            
+            if(mq.matches) {
+                $state.go("contacts-new");
+            }
         };
         
         /**
@@ -125,12 +125,18 @@
          * @instance
          */
         vm.startEditing = function(contact) {
-            vm.isEditing = true;
+            var mq = window.matchMedia("(max-device-width: 480px)");
             
-            vm.updateIcon = "fa fa-check fa-fw";
+            if(mq.matches) {
+                $state.go("contacts-edit", {"id": contact.id});
+            } else {
+                vm.isEditing = true;
             
-            vm.formData = JSON.parse(JSON.stringify(contact));
-            vm.updateContact = vm.editContact;
+                vm.updateIcon = "fa fa-check fa-fw";
+
+                vm.formData = JSON.parse(JSON.stringify(contact));
+                vm.updateContact = vm.editContact;
+            }
         };
         
         /**
@@ -146,8 +152,19 @@
             
             vm.formData = undefined;
             vm.updateContact = vm.addContact;
-        }
+        };
         
-        vm.getContacts();
+        if($state.current.name === "contacts-edit") {
+            contactService.getContact($stateParams.id).then(function(response) {
+                vm.updateMode = "Edit";
+                vm.formData = response;
+                vm.updateIcon = "fa fa-check fa-fw";
+                vm.updateContact = vm.editContact;
+            });
+        } else if($state.current.name === "contacts-new") {
+            vm.updateMode = "Add";
+        } else {
+            vm.getContacts();
+        }
     }
 })();

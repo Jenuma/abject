@@ -1,4 +1,14 @@
 <div id="contact-index">
+    <div class="row">
+        <div class="col-xs-9">
+            <h1>Contacts</h1>
+        </div>
+        <div class="col-xs-2">>
+            <button id="add-button" type="button" class="btn btn-success" ng-click="contactCtrl.startAdding()">
+                <span class="fa fa-user-plus fa-fw"></span>
+            </button>
+        </div>
+    </div>
     <form name="contactForm" ng-submit="contactCtrl.updateContact()">
         <table class="table">
             <thead>
@@ -11,12 +21,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr id="contact-form-row">
                     <td>
                         <input 
                                type="text"
                                name="name"
-                               class="form-control"
+                               class="contact-input form-control"
                                required
                                ng-class="{'has-error': contactForm.name.$touched && contactForm.name.$invalid}"
                                ng-model="contactCtrl.formData.name"
@@ -26,7 +36,7 @@
                         <input 
                                type="email"
                                name="email"
-                               class="form-control"
+                               class="contact-input form-control"
                                required
                                ng-class="{'has-error': contactForm.email.$touched && contactForm.email.$invalid}"
                                ng-model="contactCtrl.formData.email"
@@ -35,8 +45,8 @@
                     <td>
                         <input 
                                type="text"
-                               class="form-control"
                                name="number"
+                               class="contact-input form-control"
                                required
                                ng-class="{'has-error': contactForm.number.$touched && contactForm.number.$invalid}"
                                ng-model="contactCtrl.formData.number"
@@ -55,16 +65,23 @@
                     </td>
                 </tr>
                 <tr class="contact-row" ng-repeat="contact in contactCtrl.contacts">
-                    <td class="text">{{contact.name}}</td>
-                    <td class="text">{{contact.email}}</td>
-                    <td class="text">{{contact.number}}</td>
-                    <td>
-                        <button type="button" class="btn btn-danger" ng-disabled="contactCtrl.isEditing" ng-click="contactCtrl.deleteContact(contact.id)">
+                    <td id="contact-name-col" class="text">{{contact.name}}</td>
+                    <td id="contact-email-col" class="text">{{contact.email}}</td>
+                    <td id="contact-number-col" class="text">{{contact.number}}</td>
+                    <td id="contact-delete-col">
+                        <button 
+                                type="button"
+                                class="btn btn-danger"
+                                ng-disabled="contactCtrl.isEditing"
+                                ng-click="contactCtrl.deleteContact(contact.id)">
                             <span class="fa fa-trash-o fa-fw"></span>
                         </button>
                     </td>
-                    <td>
-                        <button type="button" class="btn btn-warning" ng-click="contactCtrl.startEditing(contact)">
+                    <td id="contact-edit-col">
+                        <button 
+                                type="button"
+                                class="btn btn-warning"
+                                ng-click="contactCtrl.startEditing(contact)">
                             <span class="fa fa-pencil fa-fw"></span>
                         </button>
                     </td>
