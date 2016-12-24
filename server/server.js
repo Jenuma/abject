@@ -59,15 +59,7 @@ app.use(bodyParser.json());
 // ---------------------------------------------------------------------------------------------------------|
 // Static Directories                                                                                       |
 // ---------------------------------------------------------------------------------------------------------|
-app.use("/angular", express.static(__dirname + "/../node_modules/angular"));
-app.use("/angular-ui-router", express.static(__dirname + "/../node_modules/angular-ui-router/release"));
 app.use("/angular-ui-router-title", express.static(__dirname + "/../node_modules/angular-ui-router-title"));
-app.use("/angular-animate", express.static(__dirname + "/../node_modules/angular-animate"));
-app.use("/animate.css", express.static(__dirname + "/../node_modules/animate.css"));
-app.use("/jquery", express.static(__dirname + "/../node_modules/jquery/dist"));
-app.use("/bootstrap", express.static(__dirname + "/../node_modules/bootstrap/dist"));
-app.use("/font-awesome", express.static(__dirname + "/../node_modules/font-awesome"));
-
 app.use("/app", express.static(__dirname + "/../client/app"));
 app.use("/features", express.static(__dirname + "/../client/features"));
 

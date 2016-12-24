@@ -27,6 +27,16 @@ module.exports = function(grunt) {
                     configure: "./config/jsdoc.conf.json"
                 }
             }
+        },
+        cssmin: {
+            dev: {
+                files: {
+                    "./client/app/index.min.css": [
+                        "./client/**/*.css",
+                        "!./client/app/index.min.css"
+                    ]
+                }
+            }
         }
     });
     
@@ -37,6 +47,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-karma");
     grunt.loadNpmTasks("grunt-remove");
     grunt.loadNpmTasks("grunt-jsdoc");
+    grunt.loadNpmTasks("grunt-contrib-cssmin");
     
     //
     // db-clear
@@ -168,5 +179,5 @@ module.exports = function(grunt) {
     //
     // default
     //
-    grunt.registerTask("default", ["db-reset", "nodemon"]);
+    grunt.registerTask("default", ["cssmin", "nodemon"]);
 };
