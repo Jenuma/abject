@@ -9,8 +9,6 @@
         .module("wgl.controllers.dashboard", [])
         .controller("DashboardController", DashboardController);
     
-    DashboardController.$inject = ["$state", "sessionService", "errorService"];
-    
     /**
      * Client (Angular) Controller for dashboard.
      * @constructor DashboardController
@@ -18,7 +16,7 @@
      * @param {service} $state - Service for changing view state.
      * @param {service} errorService - Notified if there are any errors.
      */
-    function DashboardController($state, sessionService, errorService) {
+    function DashboardController($state) {
         /**
          * The view-model for the dashboard.
          * @typedef {View-Model}
@@ -38,4 +36,6 @@
             $state.go("contacts");
         };
     }
+    
+    DashboardController.$inject = ["$state"];
 })();
