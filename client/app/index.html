@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <base href="/">
+        
+        <title ng-bind="$title + ' - Abject Admin'">Abject Admin</title>
+        
+        <!-- This snippet removes the hash fragment that Facebook tags onto the URL.  -->
+        <script>
+            if (window.location.hash && window.location.hash === "#_=_") {
+                if (window.history && history.pushState) {
+                    window.history.replaceState("", document.title, window.location.pathname);
+                }
+            }
+        </script>
+        
+        <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/animate.css/animate.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="/app/index.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/login/login.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/nav/nav.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/footer/footer.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/error/error.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/dashboard/dashboard.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/contact/contact.index.css"/>
+        <link rel="stylesheet" type="text/css" href="/features/contact/contact.update.css"/>
+        
+        <script src="/angular/angular.js"></script>
+        <script src="/angular-ui-router/angular-ui-router.js"></script>
+        <script src="/angular-ui-router-title/angular-ui-router-title.js"></script>
+        <script src="/angular-animate/angular-animate.js"></script>
+        
+        <script src="/features/session/session.service.js"></script>
+        <script src="/features/nav/nav.controller.js"></script>
+        <script src="/features/error/error.controller.js"></script>
+        <script src="/features/error/error.directive.js"></script>
+        <script src="/features/error/error.service.js"></script>
+        <script src="/features/dashboard/dashboard.controller.js"></script>
+        <script src="/features/contact/contact.controller.js"></script>
+        <script src="/features/contact/contact.service.js"></script>
+        <script src="/app/app.js"></script>
+        
+        <script src="/jquery/jquery.js"></script>
+        <script src="/bootstrap/js/bootstrap.js"></script>
+    </head>
+    <body>
+        <div id="nav-container" ng-include="'/features/nav/nav.html'"></div>
+        
+        <div id="main">
+            <div class="container content">
+                <div wgl-error></div>
+                <ui-view></ui-view>
+            </div>
+            
+            <div id="footer-container" ng-include="'/features/footer/footer.html'"></div>
+        </div>
+    </body>
+</html>

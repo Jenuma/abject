@@ -19,7 +19,7 @@
             var loginState = {
                 name: "login",
                 url: "/login",
-                templateUrl: "/views/login.html",
+                templateUrl: "/features/login/login.html",
                 resolve: {
                     $title: function() {return "Login";},
                     alreadyLoggedIn: function($state, sessionService) {
@@ -34,7 +34,7 @@
             var dashboardState = {
                 name: "dashboard",
                 url: "/",
-                templateUrl: "/views/dashboard.html",
+                templateUrl: "/features/dashboard/dashboard.html",
                 controller: "DashboardController",
                 controllerAs: "dashboardCtrl",
                 resolve: {
@@ -51,7 +51,7 @@
             var contactsIndexState = {
                 name: "contacts",
                 url: "/contacts",
-                templateUrl: "/views/contact/contact.index.html",
+                templateUrl: "/features/contact/contact.index.html",
                 controller: "ContactController",
                 controllerAs: "contactCtrl",
                 resolve: {
@@ -68,7 +68,7 @@
             var contactsNewState = {
                 name: "contacts-new",
                 url: "/contacts/new",
-                templateUrl: "/views/contact/contact.update.html",
+                templateUrl: "/features/contact/contact.update.html",
                 controller: "ContactController",
                 controllerAs: "contactCtrl",
                 resolve: {
@@ -85,7 +85,7 @@
             var contactsEditState = {
                 name: "contacts-edit",
                 url: "/contacts/:id",
-                templateUrl: "/views/contact/contact.update.html",
+                templateUrl: "/features/contact/contact.update.html",
                 controller: "ContactController",
                 controllerAs: "contactCtrl",
                 resolve: {
@@ -103,7 +103,7 @@
             var unauthorizedState = {
                 name: "unauthorized",
                 url: "/401",
-                templateUrl: "/views/errors/401.html",
+                templateUrl: "/features/error/401.html",
                 resolve: {
                     $title: function() {return "401 - Unauthorized";}
                 }
@@ -111,7 +111,7 @@
             var notFoundState = {
                 name: "notFound",
                 url: "*path",
-                templateUrl: "/views/errors/404.html",
+                templateUrl: "/features/error/404.html",
                 resolve: {
                     $title: function() {return "404 - Not Found";}
                 }

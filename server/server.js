@@ -67,12 +67,11 @@ app.use("/animate.css", express.static(__dirname + "/../node_modules/animate.css
 app.use("/jquery", express.static(__dirname + "/../node_modules/jquery/dist"));
 app.use("/bootstrap", express.static(__dirname + "/../node_modules/bootstrap/dist"));
 app.use("/font-awesome", express.static(__dirname + "/../node_modules/font-awesome"));
-app.use("/directives", express.static(__dirname + "/../client/common/directives"));
-app.use("/services", express.static(__dirname + "/../client/common/services"));
-app.use("/controllers", express.static(__dirname + "/../client/controllers"));
-app.use("/stylesheets", express.static(__dirname + "/../client/stylesheets"));
-app.use("/views", express.static(__dirname + "/../client/views"));
-app.use(express.static(__dirname + "/../client/views"));
+
+app.use("/app", express.static(__dirname + "/../client/app"));
+app.use("/features", express.static(__dirname + "/../client/features"));
+
+app.use(express.static(__dirname + "/../client/app"));
 
 // ---------------------------------------------------------------------------------------------------------|
 // MongoDB Connection Logic                                                                                 |
@@ -96,7 +95,7 @@ mongoose.Promise = global.Promise;
 app.use("/", require("./routes")(passport));
 
 app.use(function(req, res, next) {
-    res.sendFile(path.resolve(__dirname + "/../client/views/index.html"));
+    res.sendFile(path.resolve(__dirname + "/../client/app/index.html"));
 });
 
 app.use(function(err, req, res, next) {

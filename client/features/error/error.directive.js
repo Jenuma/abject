@@ -18,7 +18,7 @@
     function errorDirective() {
         return {
             restrict: "A",
-            templateUrl: "/views/_error.html",
+            templateUrl: "/features/error/error.html",
             controller: "ErrorController",
             controllerAs: "errorCtrl"
         };
