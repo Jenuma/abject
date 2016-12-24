@@ -4,8 +4,6 @@
     angular
         .module("wgl.services.session", [])
         .service("sessionService", sessionService);
-
-    sessionService.$inject = ["$http"];
     
     function sessionService($http) {
         this.getCurrentUser = function() {
@@ -21,4 +19,6 @@
                 });
         };
     }
+    
+    sessionService.$inject = ["$http"];
 })();

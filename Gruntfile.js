@@ -31,11 +31,27 @@ module.exports = function(grunt) {
         cssmin: {
             dev: {
                 files: {
-                    "./client/app/index.min.css": [
+                    "./client/app/style.min.css": [
                         "./client/**/*.css",
-                        "!./client/app/index.min.css"
+                        "!./client/app/style.min.css"
                     ]
                 }
+            }
+        },
+        concat: {
+            dev: {
+                src: [
+                    "./client/features/**/*.js",
+                    "./client/app/app.js",
+                    "!./client/**/*.spec.js"
+                ],
+                dest: "./client/app/script.min.js"
+            }
+        },
+        uglify: {
+            dev: {
+                src: ["./client/app/script.min.js"],
+                dest: "./client/app/script.min.js"
             }
         }
     });
@@ -48,6 +64,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-remove");
     grunt.loadNpmTasks("grunt-jsdoc");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     
     //
     // db-clear
@@ -179,5 +197,5 @@ module.exports = function(grunt) {
     //
     // default
     //
-    grunt.registerTask("default", ["cssmin", "nodemon"]);
+    grunt.registerTask("default", ["cssmin", "concat", "uglify", "nodemon"]);
 };

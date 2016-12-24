@@ -4,8 +4,6 @@
     angular
         .module("wgl.services.contact", [])
         .service("contactService", contactService);
-
-    contactService.$inject = ["$http", "errorService"];
     
     function contactService($http, errorService) {
         
@@ -64,4 +62,6 @@
                 });
         };
     }
+    
+    contactService.$inject = ["$http", "errorService"];
 })();

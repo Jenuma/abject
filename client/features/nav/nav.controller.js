@@ -4,10 +4,8 @@
     angular
         .module("wgl.controllers.nav", [])
         .controller("NavController", NavController);
-    
-    NavController.$inject = ["$http", "$state", "sessionService", "errorService"];
 
-    function NavController($http, $state, sessionService, errorService) {
+    function NavController(sessionService, errorService) {
         var vm = this;
 
         sessionService.getCurrentUser().then(function(response) {
@@ -19,4 +17,6 @@
             }
         });
     }
+    
+    NavController.$inject = ["sessionService", "errorService"];
 })();

@@ -9,8 +9,6 @@
         .module("wgl.controllers.error", [])
         .controller("ErrorController", ErrorController);
     
-    ErrorController.$inject = ["errorService"];
-    
     /**
      * Client (Angular) Controller for errors.
      * @constructor ErrorController
@@ -49,4 +47,6 @@
         
         errorService.registerObserverCallback(updateErrorMessage);
     }
+    
+    ErrorController.$inject = ["errorService"];
 })();

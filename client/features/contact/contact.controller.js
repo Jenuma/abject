@@ -9,8 +9,6 @@
         .module("wgl.controllers.contact", [])
         .controller("ContactController", ContactController);
     
-    ContactController.$inject = ["$state", "$stateParams", "contactService"];
-    
     /**
      * Client (Angular) Controller for contact resources.
      * @constructor ContactController
@@ -167,4 +165,6 @@
             vm.getContacts();
         }
     }
+    
+    ContactController.$inject = ["$state", "$stateParams", "contactService"];
 })();
