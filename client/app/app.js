@@ -117,6 +117,7 @@
             "ui.router",
             "ui.router.title",
             "wgl.directives.error",
+            "wgl.directives.loading-spinner",
             "wgl.services.session",
             "wgl.services.error",
             "wgl.services.contact",
