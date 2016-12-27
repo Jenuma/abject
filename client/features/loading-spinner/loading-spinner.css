@@ -1,0 +1,14 @@
+#spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 -50px;
+    
+    width: 100px;
+    height: 100px;
+    
+    background-color: #222222;
+    border-radius: 30px;
+
+    z-index: 1;
+}

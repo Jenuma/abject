@@ -3,12 +3,13 @@
         <div class="col-xs-9">
             <h1>Contacts</h1>
         </div>
-        <div class="col-xs-2">>
+        <div class="col-xs-2">
             <button id="add-button" type="button" class="btn btn-success" ng-click="contactCtrl.startAdding()">
                 <span class="fa fa-user-plus fa-fw"></span>
             </button>
         </div>
     </div>
+    <div class="loading-spinner" wgl-loading-spinner ng-show="contactCtrl.isLoading"></div>
     <form name="contactForm" ng-submit="contactCtrl.updateContact()">
         <table class="table">
             <thead>

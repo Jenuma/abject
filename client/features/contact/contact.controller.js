@@ -37,8 +37,10 @@
          * @instance
          */
         vm.getContacts = function() {
+            vm.isLoading = true;
             contactService.getContacts().then(function(response) {
                 vm.contacts = response;
+                vm.isLoading = false;
             });
         };
 
