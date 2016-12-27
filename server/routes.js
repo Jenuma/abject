@@ -23,6 +23,7 @@ module.exports = function(passport) {
     // -----------------------------------------------------------------------------------------------------|
     // API                                                                                                  |
     // -----------------------------------------------------------------------------------------------------|
+    router.use("/api/finance", require("./controllers/finance-controller")(protected));
     router.use("/api/contacts", require("./controllers/contact-controller")(protected));
     
     return router;

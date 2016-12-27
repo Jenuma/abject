@@ -44,6 +44,18 @@
             }
         };
 
+        var financeIndexState = {
+            name: "finance",
+            url: "/finance",
+            templateUrl: "/features/finance/finance.index.html",
+            controller: "FinanceController",
+            controllerAs: "financeCtrl",
+            resolve: {
+                $title: function() {return "Finance";},
+                notLoggedIn: notLoggedIn
+            }
+        };
+        
         var contactsIndexState = {
             name: "contacts",
             url: "/contacts",
@@ -102,6 +114,7 @@
 
         $stateProvider.state(loginState);
         $stateProvider.state(dashboardState);
+        $stateProvider.state(financeIndexState);
         $stateProvider.state(contactsIndexState);
         $stateProvider.state(contactsNewState);
         $stateProvider.state(contactsEditState);
@@ -120,10 +133,12 @@
             "wgl.directives.loading-spinner",
             "wgl.services.session",
             "wgl.services.error",
+            "wgl.services.finance",
             "wgl.services.contact",
             "wgl.controllers.error",
             "wgl.controllers.nav",
             "wgl.controllers.dashboard",
+            "wgl.controllers.finance",
             "wgl.controllers.contact"
         ])
         .config(config);

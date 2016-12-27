@@ -26,6 +26,10 @@
          */
         var vm = this;
         
+        vm.loadFinanceView = function() {
+            $state.go("finance");
+        };
+        
         /**
          * Loads the index page for contact resources.
          * @function loadContactView
