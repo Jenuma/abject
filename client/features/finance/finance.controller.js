@@ -5,13 +5,22 @@
         .module("wgl.controllers.finance", [])
         .controller("FinanceController", FinanceController);
 
-    function FinanceController(financeService) {
+    function FinanceController($scope, $interval, financeService) {
         var vm = this;
 
-        financeService.getBalance().then(function(response) {
-            vm.balance = response;
+        function getBalance() {
+            financeService.getBalance().then(function(response) {
+                vm.balance = response;
+            });
+        }
+        
+        getBalance();
+        var balanceInterval = $interval(getBalance, 60000);
+        
+        $scope.$on("$stateChangeStart", function() {
+            $interval.cancel(balanceInterval);
         });
     }
     
-    FinanceController.$inject = ["financeService"];
+    FinanceController.$inject = ["$scope", "$interval", "financeService"];
 })();

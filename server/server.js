@@ -11,6 +11,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var path = require("path");
+var exec = require("child_process").exec;
 var dbConfig = require("../config/db.conf");
 var fbConfig = require("../config/fb.conf");
 
@@ -114,4 +115,28 @@ var port = process.env.PORT || 8080;
 app.listen(port);
 console.log(`Server running on port ${port}...`);
 
-module.exports = app;
+function gatherBankData() {
+    
+    clearInterval(bankInterval);
+    var cmd = "casperjs ../../mogul.io/mogul.io.js";
+        
+    exec(cmd, function(error, stdout, stderr) {
+        var strAmount = stdout.match(/Value: \$((?:,?\d{0,3})*\.\d\d)/)[1];
+
+        if(strAmount) {
+            var balance = {amount: strAmount};
+            
+            var Balance = require("./models/balance").Balance;
+            Balance.findOneAndUpdate(balance)
+                .catch(function(err) {
+                    console.log(err);
+                    clearInterval(bankInterval);
+                });
+
+        } else {
+            clearInterval(bankInterval);
+        }
+    });
+}
+
+var bankInterval = setInterval(gatherBankData, 60000);

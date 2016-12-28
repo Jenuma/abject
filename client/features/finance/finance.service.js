@@ -10,7 +10,7 @@
        this.getBalance = function() {
             return $http.get("/api/finance/balance")
                 .then(function(response) {
-                    return response.data;
+                    return response.data.amount;
                 },
                 function(response) {
                     errorService.updateErrorMessage(response.data);

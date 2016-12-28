@@ -14,7 +14,7 @@ var mongoose = require("mongoose");
  * @param {string} number - The phone number of the contact.
  */
 var BalanceSchema = new mongoose.Schema({
-    amount: Double, default: "0.0"
+    amount: Number, default: 0.0
 });
 
 exports.Balance = mongoose.model("Balance", BalanceSchema, "finance");
