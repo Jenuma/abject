@@ -124,7 +124,7 @@ function gatherBankData() {
         var strAmount = stdout.match(/Value: \$((?:,?\d{0,3})*\.\d\d)/)[1];
 
         if(strAmount) {
-            var balance = {amount: strAmount};
+            var balance = {amount: strAmount.replace(/,/g, "")};
             
             var Balance = require("./models/balance").Balance;
             Balance.findOneAndUpdate(balance)
