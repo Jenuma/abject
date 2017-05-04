@@ -44,6 +44,18 @@
             }
         };
 
+        var kanbanState = {
+            name: "kanban",
+            url: "/kanban",
+            templateUrl: "/features/kanban/kanban.index.html",
+            controller: "KanbanController",
+            controllerAs: "kanbanCtrl",
+            resolve: {
+                $title: function() {return "Kanban";},
+                notLoggedIn: notLoggedIn
+            }
+        };
+        
         var contactsIndexState = {
             name: "contacts",
             url: "/contacts",
@@ -102,6 +114,7 @@
 
         $stateProvider.state(loginState);
         $stateProvider.state(dashboardState);
+        $stateProvider.state(kanbanState);
         $stateProvider.state(contactsIndexState);
         $stateProvider.state(contactsNewState);
         $stateProvider.state(contactsEditState);

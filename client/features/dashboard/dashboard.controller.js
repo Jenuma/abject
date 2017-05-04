@@ -27,6 +27,16 @@
         var vm = this;
         
         /**
+         * Loads the index page for kanban resources.
+         * @function loadKanbanView
+         * @memberOf ClientControllers.DashboardController
+         * @instance
+         */
+        vm.loadKanbanView = function() {
+            $state.go("kanban");
+        };
+        
+        /**
          * Loads the index page for contact resources.
          * @function loadContactView
          * @memberOf ClientControllers.DashboardController
