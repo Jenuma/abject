@@ -1,3 +1,31 @@
 <div id="kanban-container">
-    Hello, world!
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="#" class="nav-link" ng-class="{active: kanbanCtrl.isTabActive('my')}" ng-click="kanbanCtrl.setActiveTab('my')">
+                My List
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" ng-class="{active: kanbanCtrl.isTabActive('shared')}" ng-click="kanbanCtrl.setActiveTab('shared')">
+                Shared List
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" ng-class="{active: kanbanCtrl.isTabActive('all')}" ng-click="kanbanCtrl.setActiveTab('all')">
+                All
+            </a>
+        </li>
+    </ul>
+    <div ng-show="kanbanCtrl.isTabActive('my')">
+        <ul>
+            <li>The first task</li>
+            <li>The second task</li>
+        </ul>
+    </div>
+    <div ng-show="kanbanCtrl.isTabActive('shared')">
+        <ul>
+            <li>The first shared task</li>
+            <li>The second shared task</li>
+        </ul>
+    </div>
 </div>

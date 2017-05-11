@@ -53,6 +53,12 @@
             resolve: {
                 $title: function() {return "Kanban";},
                 notLoggedIn: notLoggedIn
+            },
+            onEnter: function() {
+                $(".container").css("min-width", "100%");
+            },
+            onExit: function() {
+                $(".container").css("min-width", "");
             }
         };
         
@@ -137,6 +143,7 @@
             "wgl.controllers.error",
             "wgl.controllers.nav",
             "wgl.controllers.dashboard",
+            "wgl.controllers.kanban",
             "wgl.controllers.contact"
         ])
         .config(config);

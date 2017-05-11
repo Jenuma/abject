@@ -1,0 +1,28 @@
+#kanban-container {
+    margin: 1em auto;
+}
+
+.nav-tabs, .nav-tabs>li>a:hover {
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid #424242;
+}
+
+.nav>li>a.active, .nav>li>a.active:hover {
+    color: white;
+    background-color: #424242;
+}
+
+.nav>li>a:hover {
+    color: #9E9E9E;
+    background-color: #616161;
+}
+
+.nav-tabs>li>a {
+    color: #9E9E9E;
+}
+
+.nav.nav-tabs {
+    margin-bottom: 1em;
+}

@@ -27,14 +27,26 @@
         var vm = this;
         
         /**
-         * Function description
-         * @function sampleFunction
+         * Sets the active tab.
+         * @function setActiveTab
          * @memberOf ClientControllers.KanbanController
          * @instance
          */
-        vm.sampleFunction = function() {
-            // Function code
+        vm.setActiveTab = function(tab) {
+            vm.activeList = tab;
         };
+        
+        /**
+         * Checks if the passed tab is active.
+         * @function isTabActive
+         * @memberOf ClientControllers.KanbanController
+         * @instance
+         */
+        vm.isTabActive = function(tab) {
+            return vm.activeList === tab;
+        };
+        
+        vm.activeList = "my";
     }
     
     KanbanController.$inject = ["$state"];
